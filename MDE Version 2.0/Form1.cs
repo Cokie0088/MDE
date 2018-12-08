@@ -47,16 +47,24 @@ namespace MDE_Version_2._0
             else
             {
 
-                EingabeModel eingabemodel = new EingabeModel();
-                eingabemodel.AbfrageString = abfragestringTextBox.Text;
-                eingabemodel.ZeahlerName = ErfasserTextBox.Text;
-                
-                
+                EingabeModel eingabemodel = new EingabeModel
+                {
+                    AbfrageString = abfragestringTextBox.Text,
+                    ZeahlerName = ErfasserTextBox.Text
+                };
+
+
+                var datenerfassung = new Datenerfassung();
+                datenerfassung.Erfassung(eingabemodel);
+
                 //AccessDatenModel Accessdatenmodel = new AccessDatenModel();
                 //Accessdatenmodel.DatenErfassen(eingabemodel);
-                Anzahl anzahl = new Anzahl();
-                anzahl.eingabemodel = eingabemodel;
-                anzahl.
+                Anzahl anzahl = new Anzahl
+                {
+                    Eingabemodel = eingabemodel
+                    
+                };
+                anzahl.ShowDialog();
                 anzahl.EingabemodelEvent += Anzahl_EingabemodelEvent;
                 
             }

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MDE_Version_2._0
@@ -15,21 +8,36 @@ namespace MDE_Version_2._0
 
         public event Action<EingabeModel> EingabemodelEvent;
 
-        public EingabeModel eingabemodel { get; set; }
-        public RenditeModel renditeentity { get; set; }
+        public EingabeModel Eingabemodel { get; set; }
+        public RenditeModel Renditeentity { get; set; }
 
-        public Anzahl()
-        {
-            InitializeComponent();
-        }
+        public Anzahl() => InitializeComponent();
+
+
+
+
+
+
 
         private void Okbutton_Click(object sender, EventArgs e)
         {
-            eingabemodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
-            if (EingabemodelEvent != null)
+
+
+            if (int.TryParse(AnzahltextBox.Text, out int result))
             {
-                EingabemodelEvent(eingabemodel);
+                Eingabemodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
+                EingabemodelEvent?.Invoke(Eingabemodel);
+                this.Close();
             }
+            else
+            {
+                MessageBox.Show("Bitte eine Zahl eingeben!", "Fehlerhafte eingabe", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Abbrechenbutton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

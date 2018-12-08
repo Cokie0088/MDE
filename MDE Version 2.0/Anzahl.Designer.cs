@@ -68,6 +68,7 @@
             this.Abbrechenbutton.TabIndex = 3;
             this.Abbrechenbutton.Text = "Abbrechen";
             this.Abbrechenbutton.UseVisualStyleBackColor = true;
+            this.Abbrechenbutton.Click += new System.EventHandler(this.Abbrechenbutton_Click);
             // 
             // Anzahl
             // 

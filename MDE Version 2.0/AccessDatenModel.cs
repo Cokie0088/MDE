@@ -18,7 +18,7 @@ namespace MDE_Version_2._0
 
 
             AccessErfassung accesserfassung = new AccessErfassung();
-            accesserfassung.Accessdateischreiben(datenerfassung);
+            //accesserfassung.Accessdateischreiben(datenerfassung);
             return;
         }
 

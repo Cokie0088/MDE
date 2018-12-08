@@ -3,7 +3,8 @@ namespace MDE_Version_2._0
 {
     public class Datenerfassung
     {
-        public Datenerfassung(EingabeModel eingabemodel)
+
+        public DataTable Erfassung(EingabeModel eingabemodel)
         {
             RenditeAbfrage renditeabfrage = new RenditeAbfrage();
             var entity = renditeabfrage.RenditeAbfragen(eingabemodel.AbfrageString);
@@ -36,6 +37,7 @@ namespace MDE_Version_2._0
 
                 DT.Rows.Add(row);
             }
+            return DT;
         }
 }
 }

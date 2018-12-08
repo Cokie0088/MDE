@@ -15,10 +15,10 @@ namespace MDE_Version_2._0
             SqlConnection sqlconnection = new SqlConnection();
             ///Connection String Erstellen
             SqlConnectionStringBuilder SQLConnStringBuilder = new SqlConnectionStringBuilder();
-            SQLConnStringBuilder.DataSource = "192.168.5.100";
+            SQLConnStringBuilder.DataSource = "192.168.5.102";
             SQLConnStringBuilder.InitialCatalog = "Rendite";
             SQLConnStringBuilder.UserID = "sysdba";
-            SQLConnStringBuilder.Password = "euronicsadmin";
+            SQLConnStringBuilder.Password = "masterkey";
 
             sqlconnection.ConnectionString = SQLConnStringBuilder.ConnectionString;
             return sqlconnection;
