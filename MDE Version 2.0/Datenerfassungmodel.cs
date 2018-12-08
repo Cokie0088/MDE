@@ -1,6 +1,6 @@
 ﻿namespace MDE_Version_2._0
 {
-    class Datenerfassungmodel
+   public class Datenerfassungmodel
     {
 
         public string Fabrikat { get; set; }

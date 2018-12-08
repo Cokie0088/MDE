@@ -9,12 +9,14 @@ namespace MDE_Version_2._0
         public event Action<EingabeModel> EingabemodelEvent;
 
         public EingabeModel Eingabemodel { get; set; }
-        public Datenerfassung Datenerfassung { get; set; }
+        public Datenerfassungmodel Datenerfassungmodel { get; set; }
 
         public Anzahl()
         {
             InitializeComponent();
-           Herstellerlabel.Text = 
+            Herstellerlabel.Text = Datenerfassungmodel.Fabrikat;
+            Artikelbezeichunglabel.Text = Datenerfassungmodel.Artikelbezeichnung;
+            eanlabel.Text = Datenerfassungmodel.EAN;
         }
 
         private void Okbutton_Click(object sender, EventArgs e)
