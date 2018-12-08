@@ -9,15 +9,13 @@ namespace MDE_Version_2._0
         public event Action<EingabeModel> EingabemodelEvent;
 
         public EingabeModel Eingabemodel { get; set; }
-        public RenditeModel Renditeentity { get; set; }
+        public Datenerfassung Datenerfassung { get; set; }
 
-        public Anzahl() => InitializeComponent();
-
-
-
-
-
-
+        public Anzahl()
+        {
+            InitializeComponent();
+           Herstellerlabel.Text = 
+        }
 
         private void Okbutton_Click(object sender, EventArgs e)
         {
@@ -38,6 +36,11 @@ namespace MDE_Version_2._0
         private void Abbrechenbutton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Anzahl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

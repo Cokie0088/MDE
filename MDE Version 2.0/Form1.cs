@@ -61,7 +61,9 @@ namespace MDE_Version_2._0
                 //Accessdatenmodel.DatenErfassen(eingabemodel);
                 Anzahl anzahl = new Anzahl
                 {
-                    Eingabemodel = eingabemodel
+                    Eingabemodel = eingabemodel,
+                    Datenerfassung = datenerfassung
+                    
                     
                 };
                 anzahl.ShowDialog();
