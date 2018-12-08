@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CSVDataSet" targetNamespace="http://tempuri.org/CSVDataSet.xsd" xmlns:mstns="http://tempuri.org/CSVDataSet.xsd" xmlns="http://tempuri.org/CSVDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CSVDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="CSVDataSet" msprop:Generator_DataSetName="CSVDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Erfassung" msprop:Generator_UserTableName="Erfassung" msprop:Generator_RowDeletedName="ErfassungRowDeleted" msprop:Generator_RowChangedName="ErfassungRowChanged" msprop:Generator_RowClassName="ErfassungRow" msprop:Generator_RowChangingName="ErfassungRowChanging" msprop:Generator_RowEvArgName="ErfassungRowChangeEvent" msprop:Generator_RowEvHandlerName="ErfassungRowChangeEventHandler" msprop:Generator_TableClassName="ErfassungDataTable" msprop:Generator_TableVarName="tableErfassung" msprop:Generator_RowDeletingName="ErfassungRowDeleting" msprop:Generator_TablePropName="Erfassung">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Ean" msprop:Generator_UserColumnName="Ean" msprop:Generator_ColumnVarNameInTable="columnEan" msprop:Generator_ColumnPropNameInRow="Ean" msprop:Generator_ColumnPropNameInTable="EanColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Anzahl" msprop:Generator_UserColumnName="Anzahl" msprop:Generator_ColumnVarNameInTable="columnAnzahl" msprop:Generator_ColumnPropNameInRow="Anzahl" msprop:Generator_ColumnPropNameInTable="AnzahlColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Warenbereich" msprop:Generator_UserTableName="Warenbereich" msprop:Generator_RowDeletedName="WarenbereichRowDeleted" msprop:Generator_TableClassName="WarenbereichDataTable" msprop:Generator_RowChangedName="WarenbereichRowChanged" msprop:Generator_RowClassName="WarenbereichRow" msprop:Generator_RowChangingName="WarenbereichRowChanging" msprop:Generator_RowEvArgName="WarenbereichRowChangeEvent" msprop:Generator_RowEvHandlerName="WarenbereichRowChangeEventHandler" msprop:Generator_TablePropName="Warenbereich" msprop:Generator_TableVarName="tableWarenbereich" msprop:Generator_RowDeletingName="WarenbereichRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Warenbereich" msprop:Generator_UserColumnName="Warenbereich" msprop:Generator_ColumnPropNameInRow="Warenbereich" msprop:Generator_ColumnVarNameInTable="columnWarenbereich" msprop:Generator_ColumnPropNameInTable="WarenbereichColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WarenbereichID" msprop:Generator_UserColumnName="WarenbereichID" msprop:Generator_ColumnPropNameInRow="WarenbereichID" msprop:Generator_ColumnVarNameInTable="columnWarenbereichID" msprop:Generator_ColumnPropNameInTable="WarenbereichIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
