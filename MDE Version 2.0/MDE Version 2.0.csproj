@@ -74,6 +74,12 @@
       <DependentUpon>Anzahl.cs</DependentUpon>
     </Compile>
     <Compile Include="AccessDatenModel.cs" />
+    <Compile Include="Artikelauswahl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artikelauswahl.Designer.cs">
+      <DependentUpon>Artikelauswahl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Datenerfassung.cs" />
     <Compile Include="Datenerfassungmodel.cs" />
     <Compile Include="EingabeModel.cs" />
@@ -99,6 +105,9 @@
     <Compile Include="TestEntitity.cs" />
     <EmbeddedResource Include="Anzahl.resx">
       <DependentUpon>Anzahl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artikelauswahl.resx">
+      <DependentUpon>Artikelauswahl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

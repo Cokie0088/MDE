@@ -6,27 +6,36 @@ namespace MDE_Version_2._0
     public partial class Anzahl : Form
     {
 
-        public event Action<EingabeModel> EingabemodelEvent;
+        
 
         public EingabeModel Eingabemodel { get; set; }
-        public Datenerfassungmodel Datenerfassungmodel { get; set; }
+        //private Datenerfassungmodel Datenerfassungmodel;
 
-        public Anzahl()
+        public Anzahl(Datenerfassungmodel datenerfassungmodel)
         {
+            //Eingabemodel = eingabemodel;
+            //var datenerfassung = new Datenerfassung();
+            //var datenerfassungmodel = datenerfassung.Erfassung(Eingabemodel);
+
+
+            //if (datenerfassungmodel == null)
+            //{
+            //    this.Close();
+
+            //}
+
             InitializeComponent();
-            Herstellerlabel.Text = Datenerfassungmodel.Fabrikat;
-            Artikelbezeichunglabel.Text = Datenerfassungmodel.Artikelbezeichnung;
-            eanlabel.Text = Datenerfassungmodel.EAN;
+            Herstellerlabel.Text = datenerfassungmodel.Fabrikat;
+            Artikelbezeichunglabel.Text = datenerfassungmodel.Artikelbezeichnung;
+            eanlabel.Text = datenerfassungmodel.EAN;
         }
 
         private void Okbutton_Click(object sender, EventArgs e)
         {
-
-
-            if (int.TryParse(AnzahltextBox.Text, out int result))
+            if (int.TryParse(AnzahltextBox.Text, out var result))
             {
                 Eingabemodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
-                EingabemodelEvent?.Invoke(Eingabemodel);
+                //EingabemodelEvent?.Invoke(Eingabemodel);
                 this.Close();
             }
             else

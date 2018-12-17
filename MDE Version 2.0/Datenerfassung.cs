@@ -1,22 +1,49 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
+
 namespace MDE_Version_2._0
 {
     public class Datenerfassung
     {
+        public event Action<Datenerfassungmodel> EingabemodelEvent;
 
-        public Datenerfassungmodel Erfassung(EingabeModel eingabemodel)
+        public void Erfassung(EingabeModel eingabemodel)
         {
-            RenditeAbfrage renditeabfrage = new RenditeAbfrage();
-            var entity = renditeabfrage.RenditeAbfragen(eingabemodel.AbfrageString);
-            var datenerfassungmodel = new Datenerfassungmodel();
+            var renditeabfrage = new RenditeAbfrage();
+            var renditeModel = renditeabfrage.RenditeAbfragen(eingabemodel.AbfrageString);
+            
 
-            datenerfassungmodel.Fabrikat = entity[0].Fabrikat;
-            datenerfassungmodel.Artikelbezeichnung = entity[0].Artikelbezeichnung;
-            datenerfassungmodel.EAN = entity[0].EAN;
-            datenerfassungmodel.Warenbereich = entity[0].Geschaeftsbereich;
-            datenerfassungmodel.WarenbereichID = Convert.ToInt32(entity[0].GeschaeftsbereichID);
-            datenerfassungmodel.Name = eingabemodel.ZeahlerName;
+            /* Wenn nichts in der Abfrage gefunden wurde wird ein null objekt zurückgegeben.
+             Ansonsten wird geschaut ob mehr als 1 Artikel gefunden wurde und dies in einem Fenster
+             angzeigt */
+            if (renditeModel.Count <= 0)
+            {
+                return;
+
+            }
+            else if (renditeModel.Count > 1)
+            {
+                var artikelauswahl = new Artikelauswahl {RenditeModel = renditeModel.ToList()};
+                artikelauswahl.Show();
+                
+                return;
+            }
+            else
+            {
+                var datenerfassungmodel = new Datenerfassungmodel
+                {
+                    Fabrikat = renditeModel[0].Fabrikat,
+                    Artikelbezeichnung = renditeModel[0].Artikelbezeichnung,
+                    EAN = renditeModel[0].EAN,
+                    Warenbereich = renditeModel[0].Geschaeftsbereich,
+                    WarenbereichId = Convert.ToInt32(renditeModel[0].GeschaeftsbereichID)
+                };
+                OnEingabemodelEvent(datenerfassungmodel);
+                return;
+            }
+
+           
 
             //DataTable DT = new DataTable();
 
@@ -45,9 +72,13 @@ namespace MDE_Version_2._0
 
 
             //DT.Rows.Add(row);
-            return datenerfassungmodel;
-            }
             
+            }
+
+        protected virtual void OnEingabemodelEvent(Datenerfassungmodel obj)
+        {
+            EingabemodelEvent?.Invoke(obj);
         }
+    }
 }
 

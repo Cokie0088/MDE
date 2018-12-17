@@ -44,4 +44,8 @@ Public Class ArtikelSuche
         Me.Close()
         RaiseEvent Artikel(EAN)
     End Sub
+
+    Private Sub DataGridView1_DoubleClick(sender As Object, e As EventArgs) Handles DataGridView1.DoubleClick
+
+    End Sub
 End Class

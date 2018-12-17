@@ -12,9 +12,6 @@ namespace MDE_Version_2._0
         public string AbfrageString { get; set; }
         public string ZeahlerName { get; set; }
         public int Anzahl { get; set; }
-        public DateTime ErfassungsZeit
-        {
-            get { return DateTime.Now;  }
-        }
+        public DateTime ErfassungsZeit => DateTime.Now;
     }
 }

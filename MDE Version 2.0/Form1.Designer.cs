@@ -152,6 +152,7 @@
             this.ErfasserTextBox.Name = "ErfasserTextBox";
             this.ErfasserTextBox.Size = new System.Drawing.Size(223, 20);
             this.ErfasserTextBox.TabIndex = 6;
+            this.ErfasserTextBox.TextChanged += new System.EventHandler(this.ErfasserTextBox_TextChanged);
             // 
             // label1
             // 
@@ -168,6 +169,7 @@
             this.abfragestringTextBox.Name = "abfragestringTextBox";
             this.abfragestringTextBox.Size = new System.Drawing.Size(170, 20);
             this.abfragestringTextBox.TabIndex = 0;
+            this.abfragestringTextBox.TextChanged += new System.EventHandler(this.abfragestringTextBox_TextChanged);
             // 
             // dataGridView1
             // 

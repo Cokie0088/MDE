@@ -6,32 +6,44 @@ using System.Collections.Generic;
 
 namespace MDE_Version_2._0
 {
-    class RenditeAbfrage
+    internal class RenditeAbfrage
     {
+        private string RenditeEANQuery = Properties.Resources.RenditeEANAbfrageString;
+        private string RenditeArtikelAbfrageString = "SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN OBERGRUPPEN ON UNTERGRUPPEN.OBERGRUPPE = OBERGRUPPEN.OBERGRUPPE INNER JOIN GBEREICHE ON OBERGRUPPEN.GBEREICH = GBEREICHE.GBEREICH INNER JOIN eannummern ON ARTSTAMM.ARTNR = eannummern.artnr INNER JOIN FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT WHERE ARTSTAMM.ARTBEZ Like @Artikel AND FABRIKAT.FABRIKAT Like @Fabrikat";
 
-
-        string RenditeEANQuery = Properties.Resources.RenditeEANAbfrageString;
-
-        public List<RenditeModel> RenditeAbfragen(string EAN)
+        public List<RenditeModel> RenditeAbfragen(string abfrageString)
         {
-            
-            ///Sqlparameter Hinzufügen
-            SqlParameter SQLparamenterEan = new SqlParameter("@EAN", EAN);
 
-            ///Sqlcommand erstellen
-            SqlCommand sqlcommand = new SqlCommand();
+            /*Sqlcommand erstellen*/
+            var sqlcommand = new SqlCommand();
             var datenbankverbindung = new RenditeVerbindung();
-            ///Erstellt das Sqlcommand Objekt und Richtet es gleich ein.
-            sqlcommand.Connection = datenbankverbindung.datenbankverbindung();
-            sqlcommand.Parameters.AddWithValue("@EAN", EAN);
-            sqlcommand.CommandText = RenditeEANQuery;
 
-            ///Datenbank Abfrage
-            SqlDataAdapter sqldataadpater = new SqlDataAdapter(sqlcommand);
+            /*Erstellt das Sqlcommand Objekt und Richtet es gleich ein.*/
+            sqlcommand.Connection = datenbankverbindung.datenbankverbindung();
+
+            /*Prüft an der stelle ob es sich um eine EAN handelt.*/
+            if (long.TryParse(abfrageString, out var ean))
+            {
+                //var SQLparamenterEan = new SqlParameter("@AbfrageString", AbfrageString);
+                sqlcommand.Parameters.AddWithValue("@AbfrageString", abfrageString);
+                sqlcommand.CommandText = RenditeEANQuery;
+
+            }
+            else
+            {
+                var split = abfrageString.Split(',');
+                sqlcommand.Parameters.AddWithValue("@Fabrikat", "%" + split[0] + "%");
+                sqlcommand.Parameters.AddWithValue("@Artikel", "%" + split[1] + "%");
+                sqlcommand.CommandText = RenditeArtikelAbfrageString;
+
+            }
+
+            /*Datenbank Abfrage*/
+            var sqldataadpater = new SqlDataAdapter(sqlcommand);
             
             //SQLAd.SelectCommand.Parameters.Add(SQLParaEAN);
             
-            DataTable datatable = new DataTable();
+            var datatable = new DataTable();
             sqldataadpater.Fill(datatable);
 
 
@@ -41,21 +53,24 @@ namespace MDE_Version_2._0
 
         private List<RenditeModel> RenditeMapping(DataTable datatable)
         {
-                List<RenditeModel> renditemodel = new List<RenditeModel>();
+                var renditemodel = new List<RenditeModel>();
             if (datatable.Rows.Count <= 0)
             {
                 return renditemodel;
             }
-            
+            var i = -1; /* Wichtig bei -1 zubeginnen. Zählt bei 0 los ;) */
             foreach (var item in datatable.Rows)
             {
-                RenditeModel model = new RenditeModel();
-                model.Artikelbezeichnung = datatable.Rows[0]["ARTBEZ"].ToString();
-                model.Fabrikat = datatable.Rows[0]["FABRIKAT"].ToString();
-                model.Geschaeftsbereich = datatable.Rows[0]["BEZ"].ToString();
-                model.GeschaeftsbereichID = datatable.Rows[0]["GBEREICH"].ToString();
-                model.Artikelnummer = datatable.Rows[0]["artnr"].ToString();
-                model.EAN = datatable.Rows[0]["EAN"].ToString();
+                ++i;
+                var model = new RenditeModel
+                {
+                    Artikelbezeichnung = datatable.Rows[i]["ARTBEZ"].ToString(),
+                    Fabrikat = datatable.Rows[i]["FABRIKAT"].ToString(),
+                    Geschaeftsbereich = datatable.Rows[i]["BEZ"].ToString(),
+                    GeschaeftsbereichID = datatable.Rows[i]["GBEREICH"].ToString(),
+                    Artikelnummer = datatable.Rows[i]["artnr"].ToString(),
+                    EAN = datatable.Rows[i]["EAN"].ToString()
+                };
                 renditemodel.Add(model);
             }
 

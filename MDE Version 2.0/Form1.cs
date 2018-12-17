@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MDE_Version_2._0
@@ -17,10 +18,11 @@ namespace MDE_Version_2._0
         private void Form1_Load(object sender, EventArgs e)
         {
             DatumtoolStripStatusLabel.Text = DateTime.Now.ToLongDateString();
-            //Access access = new Access();
-            //access.Accessdateioeffnen();
+#if DEBUG
+            abfragestringTextBox.Text = "7311271441489";
+            ErfasserTextBox.Text = "Test";
+#endif
 
-            
 
             BindingSource bindingsource = new BindingSource();
             bindingsource.DataSource = DT;
@@ -42,48 +44,64 @@ namespace MDE_Version_2._0
             {
                 MessageBox.Show("Bitte Zähler Namen eingeben!", "Bitte Zähler Namen eingeben!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ErfasserTextBox.Focus();
-               
+                ErfasserTextBox.BackColor = Color.Red;
             }
             else
             {
 
-                EingabeModel eingabemodel = new EingabeModel
+                var eingabemodel = new EingabeModel
                 {
                     AbfrageString = abfragestringTextBox.Text,
                     ZeahlerName = ErfasserTextBox.Text
                 };
 
-
-                var datenerfassung = new Datenerfassung();
-                datenerfassung.Erfassung(eingabemodel);
-
-                //AccessDatenModel Accessdatenmodel = new AccessDatenModel();
-                //Accessdatenmodel.DatenErfassen(eingabemodel);
-                Anzahl anzahl = new Anzahl
+                if (abfragestringTextBox.Text == "")
                 {
-                    Eingabemodel = eingabemodel,
-                    Datenerfassung = datenerfassung
-                    
-                    
-                };
-                anzahl.ShowDialog();
-                anzahl.EingabemodelEvent += Anzahl_EingabemodelEvent;
-                
+                    MessageBox.Show("Nichts eingetragen im Markierten Feld!", "Fehlerhafte eingabe",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    abfragestringTextBox.BackColor = Color.Red;
+                }
+                else
+                {
+                    //var anzahl = new Anzahl(eingabemodel);
+                    //anzahl.ShowDialog();
+                    //anzahl.EingabemodelEvent += Anzahl_EingabemodelEvent;
+
+                    var datenerfassung = new Datenerfassung();
+                    datenerfassung.EingabemodelEvent += delegate(Datenerfassungmodel datenerfassungmodel)
+                        {
+                            var anzahl = new Anzahl(datenerfassungmodel);
+                            anzahl.Show();
+                        };
+                    datenerfassung.Erfassung(eingabemodel);
+
+
+                }
             }
             
 
 
         }
 
-        private void Anzahl_EingabemodelEvent(EingabeModel obj)
-        {
+        //private void Anzahl_EingabemodelEvent(EingabeModel obj)
+        //{
             
-        }
+        //}
 
         private void einstellungenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmEinstellungen einstellungsform = new frmEinstellungen();
             einstellungsform.Show();
+        }
+
+        private void abfragestringTextBox_TextChanged(object sender, EventArgs e)
+        {
+            abfragestringTextBox.BackColor = Color.Empty;
+        }
+
+        private void ErfasserTextBox_TextChanged(object sender, EventArgs e)
+        {
+            ErfasserTextBox.BackColor = Color.Empty;
         }
     }
 }

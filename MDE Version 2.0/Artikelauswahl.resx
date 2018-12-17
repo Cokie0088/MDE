@@ -117,24 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="RenditeEANAbfrageString" xml:space="preserve">
-    <value>SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT
-                                    FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN
-                                    UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN
-                                    OBERGRUPPEN ON UNTERGRUPPEN.OBERGRUPPE = OBERGRUPPEN.OBERGRUPPE INNER JOIN
-                                    GBEREICHE ON OBERGRUPPEN.GBEREICH = GBEREICHE.GBEREICH INNER JOIN
-                                    eannummern ON ARTSTAMM.ARTNR = eannummern.artnr INNER JOIN
-                                    FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT
-                                    WHERE (eannummern.ean = @AbfrageString)</value>
-  </data>
-  <data name="RenditeKommaAbfrageString" xml:space="preserve">
-    <value>SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT
-                                    FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN
-                                    UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN
-                                    OBERGRUPPEN ON UNTERGRUPPEN.OBERGRUPPE = OBERGRUPPEN.OBERGRUPPE INNER JOIN
-                                    GBEREICHE ON OBERGRUPPEN.GBEREICH = GBEREICHE.GBEREICH INNER JOIN
-                                    eannummern ON ARTSTAMM.ARTNR = eannummern.artnr INNER JOIN
-                                    FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT
-                                    WHERE (eannummern.ean = @AbfrageString)</value>
-  </data>
 </root>
