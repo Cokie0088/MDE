@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace MDE_Version_2._0
 {
     public class Datenerfassung
     {
-        public event Action<Datenerfassungmodel> EingabemodelEvent;
+        public event Action<Datenerfassungmodel> DatenerfassungEvent;
 
         public void Erfassung(EingabeModel eingabemodel)
         {
@@ -39,7 +40,7 @@ namespace MDE_Version_2._0
                     Warenbereich = renditeModel[0].Geschaeftsbereich,
                     WarenbereichId = Convert.ToInt32(renditeModel[0].GeschaeftsbereichID)
                 };
-                OnEingabemodelEvent(datenerfassungmodel);
+                OnDatenerfassungEvent(datenerfassungmodel);
                 return;
             }
 
@@ -75,9 +76,10 @@ namespace MDE_Version_2._0
             
             }
 
-        protected virtual void OnEingabemodelEvent(Datenerfassungmodel obj)
+        protected virtual void OnDatenerfassungEvent(Datenerfassungmodel obj)
         {
-            EingabemodelEvent?.Invoke(obj);
+            DatenerfassungEvent?.Invoke(obj);
+            
         }
     }
 }

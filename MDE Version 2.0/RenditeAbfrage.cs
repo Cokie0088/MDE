@@ -8,8 +8,8 @@ namespace MDE_Version_2._0
 {
     internal class RenditeAbfrage
     {
-        private string RenditeEANQuery = Properties.Resources.RenditeEANAbfrageString;
-        private string RenditeArtikelAbfrageString = "SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN OBERGRUPPEN ON UNTERGRUPPEN.OBERGRUPPE = OBERGRUPPEN.OBERGRUPPE INNER JOIN GBEREICHE ON OBERGRUPPEN.GBEREICH = GBEREICHE.GBEREICH INNER JOIN eannummern ON ARTSTAMM.ARTNR = eannummern.artnr INNER JOIN FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT WHERE ARTSTAMM.ARTBEZ Like @Artikel AND FABRIKAT.FABRIKAT Like @Fabrikat";
+        private readonly string _renditeEanQuery = Properties.Resources.RenditeEANAbfrageString;
+        private readonly string _renditeArtikelAbfrageString = "SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN OBERGRUPPEN ON UNTERGRUPPEN.OBERGRUPPE = OBERGRUPPEN.OBERGRUPPE INNER JOIN GBEREICHE ON OBERGRUPPEN.GBEREICH = GBEREICHE.GBEREICH INNER JOIN eannummern ON ARTSTAMM.ARTNR = eannummern.artnr INNER JOIN FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT WHERE ARTSTAMM.ARTBEZ Like @Artikel AND FABRIKAT.FABRIKAT Like @Fabrikat";
 
         public List<RenditeModel> RenditeAbfragen(string abfrageString)
         {
@@ -19,14 +19,14 @@ namespace MDE_Version_2._0
             var datenbankverbindung = new RenditeVerbindung();
 
             /*Erstellt das Sqlcommand Objekt und Richtet es gleich ein.*/
-            sqlcommand.Connection = datenbankverbindung.datenbankverbindung();
+            sqlcommand.Connection = datenbankverbindung.Datenbankverbindung();
 
             /*Prüft an der stelle ob es sich um eine EAN handelt.*/
             if (long.TryParse(abfrageString, out var ean))
             {
                 //var SQLparamenterEan = new SqlParameter("@AbfrageString", AbfrageString);
                 sqlcommand.Parameters.AddWithValue("@AbfrageString", abfrageString);
-                sqlcommand.CommandText = RenditeEANQuery;
+                sqlcommand.CommandText = _renditeEanQuery;
 
             }
             else
@@ -34,7 +34,7 @@ namespace MDE_Version_2._0
                 var split = abfrageString.Split(',');
                 sqlcommand.Parameters.AddWithValue("@Fabrikat", "%" + split[0] + "%");
                 sqlcommand.Parameters.AddWithValue("@Artikel", "%" + split[1] + "%");
-                sqlcommand.CommandText = RenditeArtikelAbfrageString;
+                sqlcommand.CommandText = _renditeArtikelAbfrageString;
 
             }
 

@@ -9,21 +9,11 @@ namespace MDE_Version_2._0
         
 
         public EingabeModel Eingabemodel { get; set; }
-        //private Datenerfassungmodel Datenerfassungmodel;
+        private readonly Datenerfassungmodel _datenerfassungsmodel;
 
         public Anzahl(Datenerfassungmodel datenerfassungmodel)
         {
-            //Eingabemodel = eingabemodel;
-            //var datenerfassung = new Datenerfassung();
-            //var datenerfassungmodel = datenerfassung.Erfassung(Eingabemodel);
-
-
-            //if (datenerfassungmodel == null)
-            //{
-            //    this.Close();
-
-            //}
-
+            _datenerfassungsmodel = datenerfassungmodel;
             InitializeComponent();
             Herstellerlabel.Text = datenerfassungmodel.Fabrikat;
             Artikelbezeichunglabel.Text = datenerfassungmodel.Artikelbezeichnung;
@@ -34,8 +24,10 @@ namespace MDE_Version_2._0
         {
             if (int.TryParse(AnzahltextBox.Text, out var result))
             {
-                Eingabemodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
-                //EingabemodelEvent?.Invoke(Eingabemodel);
+
+                _datenerfassungsmodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
+                var erfassung = new Erfassung();
+                erfassung.Erfassen(_datenerfassungsmodel);
                 this.Close();
             }
             else

@@ -9,18 +9,20 @@ namespace MDE_Version_2._0
         /// Stellt die Datenbank Verbindung Bereit
         /// </summary>
         /// <returns>Gibt eine Fertig Konfiguriertes SqlConnection Objekt zurück.</returns>
-        public virtual SqlConnection datenbankverbindung()
+        public virtual SqlConnection Datenbankverbindung()
         {
-            ///Connection Erstellen
-            SqlConnection sqlconnection = new SqlConnection();
-            ///Connection String Erstellen
-            SqlConnectionStringBuilder SQLConnStringBuilder = new SqlConnectionStringBuilder();
-            SQLConnStringBuilder.DataSource = "192.168.5.102";
-            SQLConnStringBuilder.InitialCatalog = "Rendite";
-            SQLConnStringBuilder.UserID = "sysdba";
-            SQLConnStringBuilder.Password = "masterkey";
+           /* Connection Erstellen */
+            var sqlconnection = new SqlConnection();
+            /*Connection String Erstellen */
+            var sqlConnStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = "192.168.5.102",
+                InitialCatalog = "Rendite",
+                UserID = "sysdba",
+                Password = "masterkey"
+            };
 
-            sqlconnection.ConnectionString = SQLConnStringBuilder.ConnectionString;
+            sqlconnection.ConnectionString = sqlConnStringBuilder.ConnectionString;
             return sqlconnection;
 
 
@@ -28,4 +30,5 @@ namespace MDE_Version_2._0
 
 
     }
+    
 }

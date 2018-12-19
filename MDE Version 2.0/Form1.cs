@@ -8,8 +8,8 @@ namespace MDE_Version_2._0
 {
     public partial class Form1 : Form
     {
-
         DataTable DT = new DataTable();
+
         public Form1()
         {
             InitializeComponent();
@@ -24,71 +24,55 @@ namespace MDE_Version_2._0
 #endif
 
 
-            BindingSource bindingsource = new BindingSource();
-            bindingsource.DataSource = DT;
+            var bindingsource = new BindingSource {DataSource = DT};
 
-            //bindingsource.Add(new TestEntitity(1, "ABC", "123", 1));
-            //bindingsource.Add(new TestEntitity(2, "def", "456", 2));
-            //bindingsource.Add(new TestEntitity(3, "GHI", "789", 3));
 
             dataGridView1.DataSource = bindingsource;
-
-
-
         }
 
         private void Erfassungbutton_Click(object sender, EventArgs e)
         {
-
             if (ErfasserTextBox.Text == "")
             {
-                MessageBox.Show("Bitte Zähler Namen eingeben!", "Bitte Zähler Namen eingeben!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bitte Zähler Namen eingeben!", "Bitte Zähler Namen eingeben!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 ErfasserTextBox.Focus();
                 ErfasserTextBox.BackColor = Color.Red;
             }
             else
             {
-
-                var eingabemodel = new EingabeModel
-                {
-                    AbfrageString = abfragestringTextBox.Text,
-                    ZeahlerName = ErfasserTextBox.Text
-                };
-
+             
                 if (abfragestringTextBox.Text == "")
                 {
-                    MessageBox.Show("Nichts eingetragen im Markierten Feld!", "Fehlerhafte eingabe",
+                        MessageBox.Show("Nichts eingetragen im Markierten Feld!", "Fehlerhafte eingabe",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    abfragestringTextBox.BackColor = Color.Red;
+                        abfragestringTextBox.BackColor = Color.Red;
                 }
                 else
                 {
-                    //var anzahl = new Anzahl(eingabemodel);
-                    //anzahl.ShowDialog();
-                    //anzahl.EingabemodelEvent += Anzahl_EingabemodelEvent;
+                    var eingabemodel = new EingabeModel
+                    {
+                        AbfrageString = abfragestringTextBox.Text,
+                        ZeahlerName = ErfasserTextBox.Text
+                    };
 
                     var datenerfassung = new Datenerfassung();
-                    datenerfassung.EingabemodelEvent += delegate(Datenerfassungmodel datenerfassungmodel)
-                        {
-                            var anzahl = new Anzahl(datenerfassungmodel);
-                            anzahl.Show();
-                        };
+                    datenerfassung.DatenerfassungEvent += delegate(Datenerfassungmodel datenerfassungmodel)
+                    {
+                        var anzahl = new Anzahl(datenerfassungmodel);
+                        anzahl.Show();
+                    };
                     datenerfassung.Erfassung(eingabemodel);
-
-
                 }
             }
-            
-
-
         }
 
         //private void Anzahl_EingabemodelEvent(EingabeModel obj)
         //{
-            
+
         //}
 
-        private void einstellungenToolStripMenuItem_Click(object sender, EventArgs e)
+        private void EinstellungenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmEinstellungen einstellungsform = new frmEinstellungen();
             einstellungsform.Show();
@@ -102,6 +86,12 @@ namespace MDE_Version_2._0
         private void ErfasserTextBox_TextChanged(object sender, EventArgs e)
         {
             ErfasserTextBox.BackColor = Color.Empty;
+        }
+
+        private void createDatabaseSQLiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sqlitecore = new SqliteCore();
+            sqlitecore.SqLiteConnection();
         }
     }
 }

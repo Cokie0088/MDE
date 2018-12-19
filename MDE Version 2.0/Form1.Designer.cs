@@ -43,6 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.abfragestringTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDatabaseSQLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -89,7 +91,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem});
+            this.dateiToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1054, 24);
@@ -109,7 +112,7 @@
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
             this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
-            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.einstellungenToolStripMenuItem_Click);
+            this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.EinstellungenToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
@@ -185,6 +188,21 @@
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createDatabaseSQLiteToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // createDatabaseSQLiteToolStripMenuItem
+            // 
+            this.createDatabaseSQLiteToolStripMenuItem.Name = "createDatabaseSQLiteToolStripMenuItem";
+            this.createDatabaseSQLiteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.createDatabaseSQLiteToolStripMenuItem.Text = "Create Database SQLite";
+            this.createDatabaseSQLiteToolStripMenuItem.Click += new System.EventHandler(this.createDatabaseSQLiteToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,6 +246,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel AnzahltoolStripStatusLabel;
         private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createDatabaseSQLiteToolStripMenuItem;
     }
 }
 
