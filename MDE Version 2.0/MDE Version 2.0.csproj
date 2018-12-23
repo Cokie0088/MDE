@@ -45,9 +45,6 @@
       <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Settings">
-      <HintPath>.\Settings.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -92,6 +89,7 @@
     <Compile Include="Datenerfassung.cs" />
     <Compile Include="Datenerfassungmodel.cs" />
     <Compile Include="EingabeModel.cs" />
+    <Compile Include="Setting.cs" />
     <Compile Include="Erfassung.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -110,6 +108,7 @@
     <Compile Include="RenditeAbfrage.cs" />
     <Compile Include="RenditeModel.cs" />
     <Compile Include="RenditeVerbindung.cs" />
+    <Compile Include="SettingModel.cs" />
     <Compile Include="SettingsRepository.cs" />
     <Compile Include="SqliteCore.cs" />
     <Compile Include="TestEntitity.cs" />

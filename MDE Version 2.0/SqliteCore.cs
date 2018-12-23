@@ -45,7 +45,7 @@ namespace MDE_Version_2._0
             //var test = sqLiteCommand.ExecuteReader();
             var adapter = new SQLiteDataAdapter(queryString, sqLiteConnection);
             //sqLiteCommand.Connection.Close();
-            adapter.Fill()
+            
         }
     }
 }

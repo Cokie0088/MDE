@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 
+
 namespace MDE_Version_2._0
 {
     class RenditeVerbindung
@@ -14,12 +15,15 @@ namespace MDE_Version_2._0
            /* Connection Erstellen */
             var sqlconnection = new SqlConnection();
             /*Connection String Erstellen */
+            var setting = new Setting();
+            var settingModel = setting.Load();
             var sqlConnStringBuilder = new SqlConnectionStringBuilder
             {
-                DataSource = "192.168.5.102",
-                InitialCatalog = "Rendite",
-                UserID = "sysdba",
-                Password = "masterkey"
+                
+                DataSource = settingModel.IpAdresse,
+                InitialCatalog = settingModel.Database,
+                UserID = settingModel.UserName,
+                Password = settingModel.Password
             };
 
             sqlconnection.ConnectionString = sqlConnStringBuilder.ConnectionString;

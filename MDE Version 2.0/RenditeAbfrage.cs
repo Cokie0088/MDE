@@ -44,6 +44,7 @@ namespace MDE_Version_2._0
             //SQLAd.SelectCommand.Parameters.Add(SQLParaEAN);
             
             var datatable = new DataTable();
+
             sqldataadpater.Fill(datatable);
 
 

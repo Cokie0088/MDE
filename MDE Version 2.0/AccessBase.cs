@@ -40,10 +40,10 @@ namespace MDE_Version_2._0
             }
             else
             {
-                Settings.Einstellungen einstellungen = new Settings.Einstellungen("settings.cfg");
-                einstellungen.LoadReader();
-                accessdateipfad = (string)einstellungen.Items["AccessDatei"];
-                oleconnectionstringbuilder.DataSource = accessdateipfad;
+                ////Settings.Einstellungen einstellungen = new Settings.Einstellungen("settings.cfg");
+                //einstellungen.LoadReader();
+                //accessdateipfad = (string)einstellungen.Items["AccessDatei"];
+                //oleconnectionstringbuilder.DataSource = accessdateipfad;
             }
             OleCon.ConnectionString = oleconnectionstringbuilder.ConnectionString;
             return OleCon;
