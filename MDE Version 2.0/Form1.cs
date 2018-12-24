@@ -57,13 +57,25 @@ namespace MDE_Version_2._0
                     };
 
                     var datenerfassung = new Datenerfassung();
-                    datenerfassung.DatenerfassungEvent += delegate(Datenerfassungmodel datenerfassungmodel)
-                    {
-                        var anzahl = new Anzahl(datenerfassungmodel);
-                        anzahl.Show();
-                    };
+
+                    datenerfassung.DatenerfassungEvent += Datenerfassung_DatenerfassungEvent;
+                   
                     datenerfassung.Erfassung(eingabemodel);
                 }
+            }
+        }
+
+        private void Datenerfassung_DatenerfassungEvent(Datenerfassungmodel obj)
+        {
+            if (obj.EAN != "")
+            {
+                var anzahl = new Anzahl(obj);
+                anzahl.Show();
+
+            }
+            else
+            {
+                MessageBox.Show("Nichts gefunden!", "Nichts Da!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
@@ -93,5 +105,12 @@ namespace MDE_Version_2._0
             var sqlitecore = new SqliteCore();
             sqlitecore.SqLiteConnection();
         }
+
+        private void abfragestringTextBox_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+       
     }
 }

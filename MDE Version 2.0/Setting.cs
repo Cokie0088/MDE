@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -11,7 +12,7 @@ namespace MDE_Version_2._0
 {
     internal class Setting
     {
-        private string Path = Environment.CurrentDirectory + "Config.xml";
+        private string Path = Environment.CurrentDirectory + "/Config.xml";
         public void Save(SettingModel settingModel)
         {
             try
@@ -37,17 +38,22 @@ namespace MDE_Version_2._0
 
             try
             {
-                var doc = XDocument.Load(Path);
-                var q = from b in doc.Descendants("MDE-Settings")
-                select new SettingModel()
+
+                if (File.Exists(Path))
                 {
-                    Password = b.Element("Password")?.Value,
-                    IpAdresse = b.Element("IpAdress")?.Value,
-                    Creditals = Convert.ToBoolean(b.Element("Creditals")?.Value),
-                    UserName = b.Element("UserName")?.Value,
-                    Database = b.Element("Database")?.Value
-                };
-                return q.First();
+                    var doc = XDocument.Load(Path);
+                    var q = from b in doc.Descendants("MDE-Settings")
+                            select new SettingModel()
+                            {
+                                Password = b.Element("Password")?.Value,
+                                IpAdresse = b.Element("IpAdress")?.Value,
+                                Creditals = Convert.ToBoolean(b.Element("Creditals")?.Value),
+                                UserName = b.Element("UserName")?.Value,
+                                Database = b.Element("Database")?.Value
+                            };
+                    return q.First();
+                }
+                return new SettingModel();
             }
             catch (Exception e)
             {

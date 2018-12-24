@@ -3,7 +3,7 @@
 
 namespace MDE_Version_2._0
 {
-    class RenditeVerbindung
+    internal class RenditeVerbindung
     {
 
         /// <summary>
@@ -12,27 +12,33 @@ namespace MDE_Version_2._0
         /// <returns>Gibt eine Fertig Konfiguriertes SqlConnection Objekt zurück.</returns>
         public virtual SqlConnection Datenbankverbindung()
         {
-           /* Connection Erstellen */
+            /* Connection Erstellen */
             var sqlconnection = new SqlConnection();
             /*Connection String Erstellen */
             var setting = new Setting();
             var settingModel = setting.Load();
-            var sqlConnStringBuilder = new SqlConnectionStringBuilder
+            if (settingModel != null)
             {
-                
-                DataSource = settingModel.IpAdresse,
-                InitialCatalog = settingModel.Database,
-                UserID = settingModel.UserName,
-                Password = settingModel.Password
-            };
 
-            sqlconnection.ConnectionString = sqlConnStringBuilder.ConnectionString;
-            return sqlconnection;
 
+                var sqlConnStringBuilder = new SqlConnectionStringBuilder
+                {
+
+                    DataSource = settingModel.IpAdresse,
+                    InitialCatalog = settingModel.Database,
+                    UserID = settingModel.UserName,
+                    Password = settingModel.Password
+                };
+                sqlconnection.ConnectionString = sqlConnStringBuilder.ConnectionString;
+                return sqlconnection;
+
+            }
+
+            return null;
 
         }
 
 
     }
-    
+
 }

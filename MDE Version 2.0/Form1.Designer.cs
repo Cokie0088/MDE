@@ -36,6 +36,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.einstellungenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDatabaseSQLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Label2 = new System.Windows.Forms.Label();
             this.Erfassungbutton = new System.Windows.Forms.Button();
@@ -43,8 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.abfragestringTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createDatabaseSQLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -114,6 +114,21 @@
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.EinstellungenToolStripMenuItem_Click);
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createDatabaseSQLiteToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // createDatabaseSQLiteToolStripMenuItem
+            // 
+            this.createDatabaseSQLiteToolStripMenuItem.Name = "createDatabaseSQLiteToolStripMenuItem";
+            this.createDatabaseSQLiteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.createDatabaseSQLiteToolStripMenuItem.Text = "Create Database SQLite";
+            this.createDatabaseSQLiteToolStripMenuItem.Click += new System.EventHandler(this.createDatabaseSQLiteToolStripMenuItem_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -141,6 +156,7 @@
             // 
             // Erfassungbutton
             // 
+            this.Erfassungbutton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Erfassungbutton.Location = new System.Drawing.Point(347, 16);
             this.Erfassungbutton.Name = "Erfassungbutton";
             this.Erfassungbutton.Size = new System.Drawing.Size(99, 23);
@@ -188,23 +204,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
             // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createDatabaseSQLiteToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // createDatabaseSQLiteToolStripMenuItem
-            // 
-            this.createDatabaseSQLiteToolStripMenuItem.Name = "createDatabaseSQLiteToolStripMenuItem";
-            this.createDatabaseSQLiteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.createDatabaseSQLiteToolStripMenuItem.Text = "Create Database SQLite";
-            this.createDatabaseSQLiteToolStripMenuItem.Click += new System.EventHandler(this.createDatabaseSQLiteToolStripMenuItem_Click);
-            // 
             // Form1
             // 
+            this.AcceptButton = this.Erfassungbutton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 408);

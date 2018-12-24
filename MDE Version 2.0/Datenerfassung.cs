@@ -20,6 +20,7 @@ namespace MDE_Version_2._0
              angzeigt */
             if (renditeModel.Count <= 0)
             {
+                OnDatenerfassungEvent(new Datenerfassungmodel());
                 return;
 
             }
