@@ -105,7 +105,7 @@
             this.GroupBox3.Location = new System.Drawing.Point(3, 71);
             this.GroupBox3.Name = "GroupBox3";
             this.GroupBox3.Size = new System.Drawing.Size(268, 100);
-            this.GroupBox3.TabIndex = 4;
+            this.GroupBox3.TabIndex = 2;
             this.GroupBox3.TabStop = false;
             this.GroupBox3.Text = "Schutz";
             // 
@@ -116,7 +116,7 @@
             this.DBSaveCheckBox.Name = "DBSaveCheckBox";
             this.DBSaveCheckBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.DBSaveCheckBox.Size = new System.Drawing.Size(139, 17);
-            this.DBSaveCheckBox.TabIndex = 3;
+            this.DBSaveCheckBox.TabIndex = 0;
             this.DBSaveCheckBox.Text = ":Geschützte Datenbank";
             this.DBSaveCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -141,7 +141,7 @@
             this.DatenbankPasswortTextBox.Location = new System.Drawing.Point(162, 71);
             this.DatenbankPasswortTextBox.Name = "DatenbankPasswortTextBox";
             this.DatenbankPasswortTextBox.Size = new System.Drawing.Size(100, 20);
-            this.DatenbankPasswortTextBox.TabIndex = 1;
+            this.DatenbankPasswortTextBox.TabIndex = 2;
             // 
             // Label3
             // 
@@ -182,7 +182,7 @@
             this.SQLServerTextBox.Location = new System.Drawing.Point(171, 19);
             this.SQLServerTextBox.Name = "SQLServerTextBox";
             this.SQLServerTextBox.Size = new System.Drawing.Size(100, 20);
-            this.SQLServerTextBox.TabIndex = 1;
+            this.SQLServerTextBox.TabIndex = 0;
             // 
             // TabPage2
             // 
@@ -250,7 +250,7 @@
             this.BtAbort.Location = new System.Drawing.Point(234, 231);
             this.BtAbort.Name = "BtAbort";
             this.BtAbort.Size = new System.Drawing.Size(75, 23);
-            this.BtAbort.TabIndex = 5;
+            this.BtAbort.TabIndex = 1;
             this.BtAbort.Text = "Abbrechen";
             this.BtAbort.UseVisualStyleBackColor = true;
             this.BtAbort.Click += new System.EventHandler(this.BtAbort_Click);
@@ -260,7 +260,7 @@
             this.BtSettingsSave.Location = new System.Drawing.Point(12, 231);
             this.BtSettingsSave.Name = "BtSettingsSave";
             this.BtSettingsSave.Size = new System.Drawing.Size(75, 23);
-            this.BtSettingsSave.TabIndex = 4;
+            this.BtSettingsSave.TabIndex = 0;
             this.BtSettingsSave.Text = "Speichern";
             this.BtSettingsSave.UseVisualStyleBackColor = true;
             this.BtSettingsSave.Click += new System.EventHandler(this.BtSettingsSave_Click);

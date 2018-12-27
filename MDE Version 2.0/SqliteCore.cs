@@ -11,33 +11,36 @@ namespace MDE_Version_2._0
 {
     internal class SqliteCore
     {
+        //public event Action<>
         private string createTable =
-            "CREATE TABLE Erfassung(Artikel_ID INTEGER PRIMARY KEY AUTOINCREMENT, Fabrikat TEXT, Artikelbez TEXT, EAN TEXT, Anzahl INTEGER, Warenbereich TEXT, WarenbereichID INTEGER, Name TEXT NOT NULL, Erfassungszeit INTEGER NOT NULL)";
+            "CREATE TABLE Erfassung(Artikel_ID INTEGER PRIMARY KEY AUTOINCREMENT, Fabrikat TEXT, Artikelbez TEXT, EAN TEXT, Anzahl INTEGER, Warenbereich TEXT, WarenbereichID INTEGER, Name TEXT NOT NULL, Erfassungszeit REAL NOT NULL)";
 
-        private string connectionstring = "C:\\temp\\Database.db";
+        private readonly string _connectionstring = "C:\\temp\\Database.db";
 
         public SQLiteConnection SqLiteConnection()
         {
-            var con = new SQLiteConnection("Data Source = " + connectionstring);
-            LoadTable(con);
-            return null;
+            
+            var con = new SQLiteConnection("Data Source = " + _connectionstring);
+            
+            return con;
         }
 
 
         /* Erstellt die Table in der Datenbank und bereite alles vor */
-        public void CreateTable(SQLiteConnection sqLiteConnection)
+        public void CreateDatabase(string DatabasePath)
         {
-            SQLiteConnection.CreateFile(connectionstring);
+            
+            SQLiteConnection.CreateFile(DatabasePath);
 
-            sqLiteConnection.Open();
-            var command = new SQLiteCommand(createTable, sqLiteConnection);
-            command.ExecuteNonQuery();
-            sqLiteConnection.Close();
+            //sqliteConnection.Open();
+            //var command = new SQLiteCommand(createTable, sqliteConnection);
+            //command.ExecuteNonQuery();
+            //sqliteConnection.Close();
         }
 
         public void LoadTable(SQLiteConnection sqLiteConnection)
         {
-            string queryString = "Select * From Erfassung";
+            var queryString = "Select * From Erfassung";
 
             var sqLiteCommand = new SQLiteCommand(queryString, sqLiteConnection);
 
@@ -46,6 +49,42 @@ namespace MDE_Version_2._0
             var adapter = new SQLiteDataAdapter(queryString, sqLiteConnection);
             //sqLiteCommand.Connection.Close();
             
+        }
+
+        public void SaveTable(Datenerfassungmodel datenerfassungmodel)
+        {
+            var dt = ConvertModelToDataTable(datenerfassungmodel);
+            var Insertcommand =
+                "INSERT INTO Erfassung (Fabrikat, Artikelbez, EAN, Anzahl, Warenbereich, Name, Erfassungszeit) VALUES (@Fabrikat, @Artikelbez, @EAN, @Anzahl, @WarenbereichID, @Name, @Erfassungszeit)";
+
+            var sqliteCommand = new SQLiteCommand();
+            
+            using (sqliteCommand)
+            {
+                sqliteCommand.Connection = SqLiteConnection();
+                sqliteCommand.Connection.Open();
+                sqliteCommand.CommandText = Insertcommand;
+            sqliteCommand.Parameters.AddWithValue("@Fabrikat", datenerfassungmodel.Fabrikat);
+            sqliteCommand.Parameters.AddWithValue("@Artikelbez",
+                datenerfassungmodel.Artikelbezeichnung);
+            sqliteCommand.Parameters.AddWithValue("@EAN", datenerfassungmodel.EAN);
+            sqliteCommand.Parameters.AddWithValue("@Anzahl", datenerfassungmodel.Anzahl);
+            sqliteCommand.Parameters.AddWithValue("@Warenbereich", datenerfassungmodel.Warenbereich);
+            sqliteCommand.Parameters.AddWithValue("@WarenbereichID",
+                datenerfassungmodel.WarenbereichId);
+            sqliteCommand.Parameters.AddWithValue("@Name", datenerfassungmodel.ZeahlerName);
+            sqliteCommand.Parameters.AddWithValue("@Erfassungszeit",
+                datenerfassungmodel.ErfassungsZeit);
+            var result = sqliteCommand.ExecuteNonQuery(); 
+                sqliteCommand.Connection.Close();
+            }
+           
+        }
+
+
+        private DataTable ConvertModelToDataTable(Datenerfassungmodel dataDatenerfassungmodel)
+        {
+            return null;
         }
     }
 }

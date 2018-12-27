@@ -14,6 +14,7 @@ namespace MDE_Version_2._0
         public bool Creditals { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string SqliteDatabase { get; set; }
 
     }
 }

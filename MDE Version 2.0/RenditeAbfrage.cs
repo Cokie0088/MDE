@@ -3,6 +3,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace MDE_Version_2._0
 {
@@ -45,7 +46,15 @@ namespace MDE_Version_2._0
             
             var datatable = new DataTable();
 
-            sqldataadpater.Fill(datatable);
+            try
+            {
+                sqldataadpater.Fill(datatable);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
 
 
             return RenditeMapping(datatable);

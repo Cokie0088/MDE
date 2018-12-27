@@ -8,6 +8,13 @@
         public string EAN { get; set; }
         public string Warenbereich { get; set; }
         public int WarenbereichId { get; set; }
+
+        public bool HasEntry
+        {
+            get { return Fabrikat != null && Artikelbezeichnung != null && EAN != null; }
+            
+            
+        }
        
 
 

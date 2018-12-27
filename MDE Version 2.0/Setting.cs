@@ -23,7 +23,8 @@ namespace MDE_Version_2._0
                         new XElement("Database", settingModel.Database),
                         new XElement("Creditals", settingModel.Creditals),
                         new XElement("UserName", settingModel.UserName),
-                        new XElement("Password", settingModel.Password)));
+                        new XElement("Password", settingModel.Password),
+                        new XElement("SqLiteDatabase", settingModel.SqliteDatabase)));
                 doc.Save(Path);
             }
             catch (Exception e)
@@ -49,7 +50,8 @@ namespace MDE_Version_2._0
                                 IpAdresse = b.Element("IpAdress")?.Value,
                                 Creditals = Convert.ToBoolean(b.Element("Creditals")?.Value),
                                 UserName = b.Element("UserName")?.Value,
-                                Database = b.Element("Database")?.Value
+                                Database = b.Element("Database")?.Value,
+                                SqliteDatabase = b.Element("SqLiteDatabase")?.Value
                             };
                     return q.First();
                 }

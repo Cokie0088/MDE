@@ -20,6 +20,8 @@ namespace MDE_Version_2._0
              angzeigt */
             if (renditeModel.Count <= 0)
             {
+
+                
                 OnDatenerfassungEvent(new Datenerfassungmodel());
                 return;
 
@@ -35,12 +37,14 @@ namespace MDE_Version_2._0
             {
                 var datenerfassungmodel = new Datenerfassungmodel
                 {
+                    
                     Fabrikat = renditeModel[0].Fabrikat,
                     Artikelbezeichnung = renditeModel[0].Artikelbezeichnung,
                     EAN = renditeModel[0].EAN,
                     Warenbereich = renditeModel[0].Geschaeftsbereich,
                     WarenbereichId = Convert.ToInt32(renditeModel[0].GeschaeftsbereichID)
                 };
+                
                 OnDatenerfassungEvent(datenerfassungmodel);
                 return;
             }

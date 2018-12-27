@@ -59,16 +59,25 @@ namespace MDE_Version_2._0
                     var datenerfassung = new Datenerfassung();
 
                     datenerfassung.DatenerfassungEvent += Datenerfassung_DatenerfassungEvent;
-                   
-                    datenerfassung.Erfassung(eingabemodel);
+                    try
+                    {
+                        datenerfassung.Erfassung(eingabemodel);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Verbindung zum Server konnte nicht Hergestellt werden evtl. sind die Einstellungen Fehlerhaft. Bitte Korrigieren.", "Fehler", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    
                 }
             }
         }
 
         private void Datenerfassung_DatenerfassungEvent(Datenerfassungmodel obj)
         {
-            if (obj.EAN != "")
+            if (obj.HasEntry)
             {
+                obj.ZeahlerName = ErfasserTextBox.Text;
                 var anzahl = new Anzahl(obj);
                 anzahl.Show();
 

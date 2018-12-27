@@ -1,11 +1,12 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace MDE_Version_2._0
 {
     internal class RenditeVerbindung
     {
-
         /// <summary>
         /// Stellt die Datenbank Verbindung Bereit
         /// </summary>
@@ -17,28 +18,26 @@ namespace MDE_Version_2._0
             /*Connection String Erstellen */
             var setting = new Setting();
             var settingModel = setting.Load();
-            if (settingModel != null)
+            if (settingModel == null) return null;
+            try
             {
-
-
                 var sqlConnStringBuilder = new SqlConnectionStringBuilder
                 {
-
                     DataSource = settingModel.IpAdresse,
                     InitialCatalog = settingModel.Database,
                     UserID = settingModel.UserName,
                     Password = settingModel.Password
                 };
                 sqlconnection.ConnectionString = sqlConnStringBuilder.ConnectionString;
-                return sqlconnection;
-
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
-            return null;
+
+            return sqlconnection;
 
         }
-
-
     }
-
 }

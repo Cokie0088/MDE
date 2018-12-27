@@ -15,6 +15,9 @@ namespace MDE_Version_2._0
         public void Erfassen(Datenerfassungmodel datenerfassungmodel)
         {
             var sqlitecon = new SqliteCore();
+            sqlitecon.SaveTable(datenerfassungmodel);
+
+
            
 
         }

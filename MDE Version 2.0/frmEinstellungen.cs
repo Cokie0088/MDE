@@ -11,8 +11,9 @@ namespace MDE_Version_2._0
             InitializeComponent();
         }
 
-        string Accessdatenbankpfad;
-        string Dateifilter = "Access datei(*.mdb)|*.mdb";
+      
+        private string Dateifilter = "Sqlite Datenbank(*.db)|*.db";
+        private string Filename;
 
         private void BtSettingsSave_Click(object sender, EventArgs e)
         {
@@ -23,8 +24,9 @@ namespace MDE_Version_2._0
                 IpAdresse = SQLServerTextBox.Text,
                 Creditals = DBSaveCheckBox.Checked,
                 Password = DatenbankPasswortTextBox.Text,
-                UserName = DatenbankBenutzerTextBox.Text
-            };
+                UserName = DatenbankBenutzerTextBox.Text,
+                SqliteDatabase = Filename
+                };
             setting.Save(settingModel);
 
 
@@ -33,27 +35,36 @@ namespace MDE_Version_2._0
 
         private void AccessOeffnenButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openfiledialog = new OpenFileDialog();
-            openfiledialog.Filter = Dateifilter;
-            DialogResult result = openfiledialog.ShowDialog();
+            var openfiledialog = new OpenFileDialog {Filter = Dateifilter};
+            var result = openfiledialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                Accessdatenbankpfad = openfiledialog.FileName;
-                AccessDatenbankTextBox.Text = Accessdatenbankpfad;
+
+                Filename = openfiledialog.FileName;
+                AccessDatenbankTextBox.Text = Filename;
+                //Accessdatenbankpfad = openfiledialog.FileName;
+                //AccessDatenbankTextBox.Text = Accessdatenbankpfad;
             }
         }
 
         private void ErstellenButton_Click(object sender, EventArgs e)
         {
-            AccessErfassung access = new AccessErfassung();
-            SaveFileDialog savefiledialog = new SaveFileDialog();
-            savefiledialog.Filter = Dateifilter;
+            //AccessErfassung access = new AccessErfassung();
+            var savefiledialog = new SaveFileDialog {Filter = Dateifilter};
             var result = savefiledialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                Accessdatenbankpfad = savefiledialog.FileName;
-                access.ErfassungsDateiErstellen(Accessdatenbankpfad);
-                AccessDatenbankTextBox.Text = Accessdatenbankpfad;
+                var sqliteCore = new SqliteCore();
+                Filename = savefiledialog.FileName;
+                AccessDatenbankTextBox.Text = Filename;
+                sqliteCore.CreateDatabase(Filename);
+                
+               
+
+
+                //Accessdatenbankpfad = savefiledialog.FileName;
+                //access.ErfassungsDateiErstellen(Accessdatenbankpfad);
+                //AccessDatenbankTextBox.Text = Accessdatenbankpfad;
             }
         }
 
@@ -72,6 +83,8 @@ namespace MDE_Version_2._0
             DBSaveCheckBox.Checked = settingModel.Creditals;
             DatenbankPasswortTextBox.Text = settingModel.Password;
             DatenbankBenutzerTextBox.Text = settingModel.UserName;
+            AccessDatenbankTextBox.Text = settingModel.SqliteDatabase;
+
         }
     }
 }
