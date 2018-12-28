@@ -193,16 +193,16 @@
             this.TabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.TabPage2.Size = new System.Drawing.Size(289, 191);
             this.TabPage2.TabIndex = 1;
-            this.TabPage2.Text = "Access Datenbank";
+            this.TabPage2.Text = "SQL-Lite Datenbank";
             this.TabPage2.UseVisualStyleBackColor = true;
             // 
             // ErstellenButton
             // 
-            this.ErstellenButton.Location = new System.Drawing.Point(140, 117);
+            this.ErstellenButton.Location = new System.Drawing.Point(124, 117);
             this.ErstellenButton.Name = "ErstellenButton";
-            this.ErstellenButton.Size = new System.Drawing.Size(137, 23);
+            this.ErstellenButton.Size = new System.Drawing.Size(153, 23);
             this.ErstellenButton.TabIndex = 3;
-            this.ErstellenButton.Text = "Datei Neu Erstellen";
+            this.ErstellenButton.Text = "Datenbank Datei erstellen";
             this.ErstellenButton.UseVisualStyleBackColor = true;
             this.ErstellenButton.Click += new System.EventHandler(this.ErstellenButton_Click);
             // 
@@ -216,15 +216,15 @@
             this.GroupBox2.Size = new System.Drawing.Size(277, 105);
             this.GroupBox2.TabIndex = 0;
             this.GroupBox2.TabStop = false;
-            this.GroupBox2.Text = "Access Datenbank";
+            this.GroupBox2.Text = "SQL-Lite Datenbank";
             // 
             // AccessOeffnenButton
             // 
-            this.AccessOeffnenButton.Location = new System.Drawing.Point(134, 76);
+            this.AccessOeffnenButton.Location = new System.Drawing.Point(118, 76);
             this.AccessOeffnenButton.Name = "AccessOeffnenButton";
-            this.AccessOeffnenButton.Size = new System.Drawing.Size(137, 23);
+            this.AccessOeffnenButton.Size = new System.Drawing.Size(153, 23);
             this.AccessOeffnenButton.TabIndex = 2;
-            this.AccessOeffnenButton.Text = "Access Datei Öffnen";
+            this.AccessOeffnenButton.Text = "Datenbank Datei öffnen";
             this.AccessOeffnenButton.UseVisualStyleBackColor = true;
             this.AccessOeffnenButton.Click += new System.EventHandler(this.AccessOeffnenButton_Click);
             // 
@@ -233,9 +233,9 @@
             this.Label5.AutoSize = true;
             this.Label5.Location = new System.Drawing.Point(6, 26);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(122, 13);
+            this.Label5.Size = new System.Drawing.Size(128, 13);
             this.Label5.TabIndex = 1;
-            this.Label5.Text = "Access Datenbankpfad:";
+            this.Label5.Text = "SQL-Lite Datenbankpfad:";
             // 
             // AccessDatenbankTextBox
             // 

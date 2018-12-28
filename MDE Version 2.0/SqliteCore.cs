@@ -74,12 +74,21 @@ namespace MDE_Version_2._0
             var dataTable = new DataTable();
             var con = SqLiteConnection();
             var sqLiteCommand = new SQLiteCommand(queryString, con);
-
-            sqLiteCommand.Connection.Open();
-            //var test = sqLiteCommand.ExecuteReader();
+            try
+            {
             var adapter = new SQLiteDataAdapter(queryString, con);
-            adapter.Fill(dataTable);
-            sqLiteCommand.Connection.Close();
+                using (adapter)
+                {
+                    adapter.Fill(dataTable);
+
+                }
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+          
             return dataTable;
         }
     
@@ -117,7 +126,8 @@ namespace MDE_Version_2._0
 
         public void EditEntry(DataTable dataTable)
         {
-
+            try
+            {
             var sqLiteDataAdapter = new SQLiteDataAdapter("Select * From Erfassung", SqLiteConnection());
 
             var commandbuilder = new SQLiteCommandBuilder
@@ -126,6 +136,13 @@ namespace MDE_Version_2._0
             };
             sqLiteDataAdapter.UpdateCommand = commandbuilder.GetUpdateCommand();
             sqLiteDataAdapter.Update(dataTable);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
 
             
 

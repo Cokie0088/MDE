@@ -21,34 +21,36 @@ namespace MDE_Version_2._0
 
         public void EditEntry(DataTable dataTable)
         {
+            try
+            {
             var sqliteCore = new  SqliteCore();
             sqliteCore.EditEntry(dataTable);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
 
         }
 
         public DataTable LoadEntry()
         {
+            try
+            {
             var sqliteCore = new SqliteCore();
             return sqliteCore.LoadViewEntry();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
 
-
-
-
-
-        //public DataTable Erfassen(string EAN)
-        // {
-
-        //     var dt = new DataTable();
-        //     var renditeabfage = new RenditeAbfrage();
-        //     renditeabfage.RenditeAbfragen(EAN);
-        //     var access = new AccessErfassung();
-        //     access.Accessdateischreiben(dt);
-        //     return dt;
-
-        // }
-
-
+        
 
     }
 }

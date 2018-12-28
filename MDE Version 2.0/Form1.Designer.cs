@@ -46,11 +46,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.abfragestringTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Artikel_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fabrikat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArtikelbezCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AnzahlCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -216,11 +216,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
-            // 
-            // datenerfassungBindingSource
-            // 
-            this.datenerfassungBindingSource.DataSource = typeof(MDE_Version_2._0.Datenerfassung);
+            this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
             // 
             // Artikel_ID
             // 
@@ -248,6 +244,10 @@
             this.AnzahlCell.DataPropertyName = "Anzahl";
             this.AnzahlCell.HeaderText = "Anzahl";
             this.AnzahlCell.Name = "AnzahlCell";
+            // 
+            // datenerfassungBindingSource
+            // 
+            this.datenerfassungBindingSource.DataSource = typeof(MDE_Version_2._0.Datenerfassung);
             // 
             // Form1
             // 

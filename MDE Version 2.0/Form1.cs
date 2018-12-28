@@ -22,10 +22,19 @@ namespace MDE_Version_2._0
             abfragestringTextBox.Text = "7311271441489";
             ErfasserTextBox.Text = "Test";
 #endif
-
+            try
+            {
             var erfassung = new Erfassung();
             DT = erfassung.LoadEntry();
             dataGridView1.DataSource = DT;
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show("Es wurde keine SQL-Lite Databank gefunden. Bitte unter Datei/Einstellungen -> SQL-Lite Karteireiter eine Datenbank auswählen oder erstellen.", "Keine Datenbank gefunden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+            }
+            
 
         }
 
@@ -120,14 +129,18 @@ namespace MDE_Version_2._0
             sqlitecore.SqLiteConnection();
         }
 
-        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            try
             {
-                var sqliteCore = new  SqliteCore();
+                var sqliteCore = new SqliteCore();
                 sqliteCore.EditEntry(DT);
             }
-            
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
