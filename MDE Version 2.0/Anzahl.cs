@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace MDE_Version_2._0
@@ -10,6 +11,7 @@ namespace MDE_Version_2._0
 
         public EingabeModel Eingabemodel { get; set; }
         private readonly Datenerfassungmodel _datenerfassungsmodel;
+        public event Action<DataTable> NewEntryEvent;
 
         public Anzahl(Datenerfassungmodel datenerfassungmodel)
         {
@@ -27,7 +29,8 @@ namespace MDE_Version_2._0
 
                 _datenerfassungsmodel.Anzahl = Convert.ToInt32(AnzahltextBox.Text);
                 var erfassung = new Erfassung();
-                erfassung.Erfassen(_datenerfassungsmodel);
+                var resultDataTable = erfassung.Erfassen(_datenerfassungsmodel);
+                NewEntryEvent?.Invoke(resultDataTable);
                 this.Close();
             }
             else
@@ -41,9 +44,6 @@ namespace MDE_Version_2._0
             this.Close();
         }
 
-        private void Anzahl_Load(object sender, EventArgs e)
-        {
-
-        }
+      
     }
 }

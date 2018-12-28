@@ -57,7 +57,16 @@ namespace MDE_Version_2._0
                 var sqliteCore = new SqliteCore();
                 Filename = savefiledialog.FileName;
                 AccessDatenbankTextBox.Text = Filename;
-                sqliteCore.CreateDatabase(Filename);
+                try
+                {
+                    sqliteCore.CreateDatabase(Filename);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+                
                 
                
 

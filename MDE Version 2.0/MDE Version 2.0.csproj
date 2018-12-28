@@ -109,7 +109,6 @@
     <Compile Include="RenditeModel.cs" />
     <Compile Include="RenditeVerbindung.cs" />
     <Compile Include="SettingModel.cs" />
-    <Compile Include="SettingsRepository.cs" />
     <Compile Include="SqliteCore.cs" />
     <Compile Include="TestEntitity.cs" />
     <EmbeddedResource Include="Anzahl.resx">

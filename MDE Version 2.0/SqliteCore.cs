@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.Drawing.Printing;
 
 namespace MDE_Version_2._0
 {
@@ -13,78 +14,121 @@ namespace MDE_Version_2._0
     {
         //public event Action<>
         private string createTable =
-            "CREATE TABLE Erfassung(Artikel_ID INTEGER PRIMARY KEY AUTOINCREMENT, Fabrikat TEXT, Artikelbez TEXT, EAN TEXT, Anzahl INTEGER, Warenbereich TEXT, WarenbereichID INTEGER, Name TEXT NOT NULL, Erfassungszeit REAL NOT NULL)";
+            "CREATE TABLE Erfassung(Artikel_ID INTEGER PRIMARY KEY AUTOINCREMENT, Fabrikat TEXT, Artikelbez TEXT, EAN TEXT, Anzahl INTEGER, Warenbereich TEXT, WarenbereichID INTEGER, Name TEXT NOT NULL, Erfassungszeit TEXT NOT NULL)";
 
-        private readonly string _connectionstring = "C:\\temp\\Database.db";
 
         public SQLiteConnection SqLiteConnection()
         {
-            
-            var con = new SQLiteConnection("Data Source = " + _connectionstring);
-            
+            var setting = new Setting();
+            var settingModel = setting.Load();
+
+            var con = new SQLiteConnection("Data Source = " + settingModel.SqliteDatabase);
+
             return con;
         }
 
+        private SQLiteConnection SqLiteConnection(string DatabasePath)
+        {
+            var con = new SQLiteConnection("Data Source = " + DatabasePath);
+
+            return con;
+        }
 
         /* Erstellt die Table in der Datenbank und bereite alles vor */
         public void CreateDatabase(string DatabasePath)
         {
-            
-            SQLiteConnection.CreateFile(DatabasePath);
+            try
+            {
+                SQLiteConnection.CreateFile(DatabasePath);
+                var con = SqLiteConnection(DatabasePath);
 
-            //sqliteConnection.Open();
-            //var command = new SQLiteCommand(createTable, sqliteConnection);
-            //command.ExecuteNonQuery();
-            //sqliteConnection.Close();
+                con.Open();
+                var command = new SQLiteCommand(createTable, con);
+                command.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public void LoadTable(SQLiteConnection sqLiteConnection)
+        public DataTable LoadTable()
         {
             var queryString = "Select * From Erfassung";
-
-            var sqLiteCommand = new SQLiteCommand(queryString, sqLiteConnection);
+            var dataTable = new DataTable();
+            var con = SqLiteConnection();
+            var sqLiteCommand = new SQLiteCommand(queryString, con);
 
             sqLiteCommand.Connection.Open();
             //var test = sqLiteCommand.ExecuteReader();
-            var adapter = new SQLiteDataAdapter(queryString, sqLiteConnection);
-            //sqLiteCommand.Connection.Close();
-            
+            var adapter = new SQLiteDataAdapter(queryString, con);
+            adapter.Fill(dataTable);
+            sqLiteCommand.Connection.Close();
+            return dataTable;
         }
 
-        public void SaveTable(Datenerfassungmodel datenerfassungmodel)
+        public DataTable LoadViewEntry()
         {
-            var dt = ConvertModelToDataTable(datenerfassungmodel);
+            var queryString = "Select Artikel_ID, Artikelbez, Fabrikat, Anzahl, EAN, Warenbereich From Erfassung";
+            var dataTable = new DataTable();
+            var con = SqLiteConnection();
+            var sqLiteCommand = new SQLiteCommand(queryString, con);
+
+            sqLiteCommand.Connection.Open();
+            //var test = sqLiteCommand.ExecuteReader();
+            var adapter = new SQLiteDataAdapter(queryString, con);
+            adapter.Fill(dataTable);
+            sqLiteCommand.Connection.Close();
+            return dataTable;
+        }
+    
+
+        public DataTable NewEntry(Datenerfassungmodel datenerfassungmodel)
+        {
+          
             var Insertcommand =
-                "INSERT INTO Erfassung (Fabrikat, Artikelbez, EAN, Anzahl, Warenbereich, Name, Erfassungszeit) VALUES (@Fabrikat, @Artikelbez, @EAN, @Anzahl, @WarenbereichID, @Name, @Erfassungszeit)";
+                "INSERT INTO Erfassung (Fabrikat, Artikelbez, EAN, Anzahl, Warenbereich, WarenbereichID, Name, Erfassungszeit) VALUES (@Fabrikat, @Artikelbez, @EAN, @Anzahl, @Warenbereich, @WarenbereichID, @Name, @Erfassungszeit)";
 
             var sqliteCommand = new SQLiteCommand();
-            
+
             using (sqliteCommand)
             {
                 sqliteCommand.Connection = SqLiteConnection();
                 sqliteCommand.Connection.Open();
                 sqliteCommand.CommandText = Insertcommand;
-            sqliteCommand.Parameters.AddWithValue("@Fabrikat", datenerfassungmodel.Fabrikat);
-            sqliteCommand.Parameters.AddWithValue("@Artikelbez",
-                datenerfassungmodel.Artikelbezeichnung);
-            sqliteCommand.Parameters.AddWithValue("@EAN", datenerfassungmodel.EAN);
-            sqliteCommand.Parameters.AddWithValue("@Anzahl", datenerfassungmodel.Anzahl);
-            sqliteCommand.Parameters.AddWithValue("@Warenbereich", datenerfassungmodel.Warenbereich);
-            sqliteCommand.Parameters.AddWithValue("@WarenbereichID",
-                datenerfassungmodel.WarenbereichId);
-            sqliteCommand.Parameters.AddWithValue("@Name", datenerfassungmodel.ZeahlerName);
-            sqliteCommand.Parameters.AddWithValue("@Erfassungszeit",
-                datenerfassungmodel.ErfassungsZeit);
-            var result = sqliteCommand.ExecuteNonQuery(); 
+                sqliteCommand.Parameters.AddWithValue("@Fabrikat", datenerfassungmodel.Fabrikat);
+                sqliteCommand.Parameters.AddWithValue("@Artikelbez",
+                    datenerfassungmodel.Artikelbezeichnung);
+                sqliteCommand.Parameters.AddWithValue("@EAN", datenerfassungmodel.EAN);
+                sqliteCommand.Parameters.AddWithValue("@Anzahl", datenerfassungmodel.Anzahl);
+                sqliteCommand.Parameters.AddWithValue("@Warenbereich", datenerfassungmodel.Warenbereich);
+                sqliteCommand.Parameters.AddWithValue("@WarenbereichID",
+                    datenerfassungmodel.WarenbereichId);
+                sqliteCommand.Parameters.AddWithValue("@Name", datenerfassungmodel.ZeahlerName);
+                sqliteCommand.Parameters.AddWithValue("@Erfassungszeit",
+                    datenerfassungmodel.ErfassungsZeit);
+                var result = sqliteCommand.ExecuteNonQuery();
                 sqliteCommand.Connection.Close();
+                return LoadTable();
             }
-           
         }
 
 
-        private DataTable ConvertModelToDataTable(Datenerfassungmodel dataDatenerfassungmodel)
+        public void EditEntry(DataTable dataTable)
         {
-            return null;
+
+            var sqLiteDataAdapter = new SQLiteDataAdapter("Select * From Erfassung", SqLiteConnection());
+
+            var commandbuilder = new SQLiteCommandBuilder
+            {
+                DataAdapter = sqLiteDataAdapter
+            };
+            sqLiteDataAdapter.UpdateCommand = commandbuilder.GetUpdateCommand();
+            sqLiteDataAdapter.Update(dataTable);
+
+            
+
         }
     }
 }

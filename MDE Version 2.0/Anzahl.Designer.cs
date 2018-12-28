@@ -172,7 +172,6 @@
             this.MinimizeBox = false;
             this.Name = "Anzahl";
             this.Text = "Anzahl";
-            this.Load += new System.EventHandler(this.Anzahl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

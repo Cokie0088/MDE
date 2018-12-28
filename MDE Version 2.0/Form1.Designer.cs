@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.DatumtoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,10 +46,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.abfragestringTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Artikel_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fabrikat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ArtikelbezCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AnzahlCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datenerfassungBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -197,12 +204,50 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Artikel_ID,
+            this.Fabrikat,
+            this.ArtikelbezCell,
+            this.AnzahlCell});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(12, 90);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
+            // 
+            // datenerfassungBindingSource
+            // 
+            this.datenerfassungBindingSource.DataSource = typeof(MDE_Version_2._0.Datenerfassung);
+            // 
+            // Artikel_ID
+            // 
+            this.Artikel_ID.DataPropertyName = "Artikel_ID";
+            this.Artikel_ID.HeaderText = "Artikel ID";
+            this.Artikel_ID.Name = "Artikel_ID";
+            this.Artikel_ID.ReadOnly = true;
+            // 
+            // Fabrikat
+            // 
+            this.Fabrikat.DataPropertyName = "Fabrikat";
+            this.Fabrikat.HeaderText = "Farbrikat";
+            this.Fabrikat.Name = "Fabrikat";
+            this.Fabrikat.ReadOnly = true;
+            // 
+            // ArtikelbezCell
+            // 
+            this.ArtikelbezCell.DataPropertyName = "Artikelbez";
+            this.ArtikelbezCell.HeaderText = "Artikelbezeichnung";
+            this.ArtikelbezCell.Name = "ArtikelbezCell";
+            this.ArtikelbezCell.ReadOnly = true;
+            // 
+            // AnzahlCell
+            // 
+            this.AnzahlCell.DataPropertyName = "Anzahl";
+            this.AnzahlCell.HeaderText = "Anzahl";
+            this.AnzahlCell.Name = "AnzahlCell";
             // 
             // Form1
             // 
@@ -226,6 +271,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datenerfassungBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +296,11 @@
         private System.Windows.Forms.ToolStripMenuItem einstellungenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createDatabaseSQLiteToolStripMenuItem;
+        private System.Windows.Forms.BindingSource datenerfassungBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Artikel_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fabrikat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ArtikelbezCell;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AnzahlCell;
     }
 }
 

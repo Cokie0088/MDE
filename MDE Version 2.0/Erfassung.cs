@@ -12,31 +12,41 @@ namespace MDE_Version_2._0
     {
 
 
-        public void Erfassen(Datenerfassungmodel datenerfassungmodel)
+        public DataTable Erfassen(Datenerfassungmodel datenerfassungmodel)
         {
-            var sqlitecon = new SqliteCore();
-            sqlitecon.SaveTable(datenerfassungmodel);
+            var sqliteCore = new SqliteCore();
+            return sqliteCore.NewEntry(datenerfassungmodel);
 
+        }
 
-           
+        public void EditEntry(DataTable dataTable)
+        {
+            var sqliteCore = new  SqliteCore();
+            sqliteCore.EditEntry(dataTable);
 
+        }
+
+        public DataTable LoadEntry()
+        {
+            var sqliteCore = new SqliteCore();
+            return sqliteCore.LoadViewEntry();
         }
 
 
 
 
 
-       //public DataTable Erfassen(string EAN)
-       // {
+        //public DataTable Erfassen(string EAN)
+        // {
 
-       //     var dt = new DataTable();
-       //     var renditeabfage = new RenditeAbfrage();
-       //     renditeabfage.RenditeAbfragen(EAN);
-       //     var access = new AccessErfassung();
-       //     access.Accessdateischreiben(dt);
-       //     return dt;
+        //     var dt = new DataTable();
+        //     var renditeabfage = new RenditeAbfrage();
+        //     renditeabfage.RenditeAbfragen(EAN);
+        //     var access = new AccessErfassung();
+        //     access.Accessdateischreiben(dt);
+        //     return dt;
 
-       // }
+        // }
 
 
 

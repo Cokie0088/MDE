@@ -23,11 +23,10 @@ namespace MDE_Version_2._0
             ErfasserTextBox.Text = "Test";
 #endif
 
+            var erfassung = new Erfassung();
+            DT = erfassung.LoadEntry();
+            dataGridView1.DataSource = DT;
 
-            var bindingsource = new BindingSource {DataSource = DT};
-
-
-            dataGridView1.DataSource = bindingsource;
         }
 
         private void Erfassungbutton_Click(object sender, EventArgs e)
@@ -79,6 +78,7 @@ namespace MDE_Version_2._0
             {
                 obj.ZeahlerName = ErfasserTextBox.Text;
                 var anzahl = new Anzahl(obj);
+                anzahl.NewEntryEvent += Anzahl_NewEntryEvent;
                 anzahl.Show();
 
             }
@@ -86,6 +86,11 @@ namespace MDE_Version_2._0
             {
                 MessageBox.Show("Nichts gefunden!", "Nichts Da!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+        }
+
+        private void Anzahl_NewEntryEvent(DataTable obj)
+        {
+            dataGridView1.DataSource = obj;
         }
 
         //private void Anzahl_EingabemodelEvent(EingabeModel obj)
@@ -115,11 +120,14 @@ namespace MDE_Version_2._0
             sqlitecore.SqLiteConnection();
         }
 
-        private void abfragestringTextBox_Enter(object sender, EventArgs e)
+        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 3)
+            {
+                var sqliteCore = new  SqliteCore();
+                sqliteCore.EditEntry(DT);
+            }
             
         }
-
-       
     }
 }
