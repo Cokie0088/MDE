@@ -128,7 +128,7 @@ namespace MDE_Version_2._0
         {
             try
             {
-            var sqLiteDataAdapter = new SQLiteDataAdapter("Select * From Erfassung", SqLiteConnection());
+            var sqLiteDataAdapter = new SQLiteDataAdapter("Select Artikel_ID, Anzahl From Erfassung", SqLiteConnection());
 
             var commandbuilder = new SQLiteCommandBuilder
             {

@@ -50,6 +50,8 @@
             this.Fabrikat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArtikelbezCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AnzahlCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WarenbereichCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -208,7 +210,9 @@
             this.Artikel_ID,
             this.Fabrikat,
             this.ArtikelbezCell,
-            this.AnzahlCell});
+            this.AnzahlCell,
+            this.WarenbereichCell,
+            this.NameCell});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(12, 90);
             this.dataGridView1.MultiSelect = false;
@@ -216,7 +220,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
-            this.dataGridView1.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView1_CurrentCellDirtyStateChanged);
+          
             // 
             // Artikel_ID
             // 
@@ -244,6 +248,20 @@
             this.AnzahlCell.DataPropertyName = "Anzahl";
             this.AnzahlCell.HeaderText = "Anzahl";
             this.AnzahlCell.Name = "AnzahlCell";
+            // 
+            // WarenbereichCell
+            // 
+            this.WarenbereichCell.DataPropertyName = "Warenbereich";
+            this.WarenbereichCell.HeaderText = "Warenbereich";
+            this.WarenbereichCell.Name = "WarenbereichCell";
+            this.WarenbereichCell.ReadOnly = true;
+            // 
+            // NameCell
+            // 
+            this.NameCell.DataPropertyName = "Name";
+            this.NameCell.HeaderText = "Name";
+            this.NameCell.Name = "NameCell";
+            this.NameCell.ReadOnly = true;
             // 
             // datenerfassungBindingSource
             // 
@@ -301,6 +319,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Fabrikat;
         private System.Windows.Forms.DataGridViewTextBoxColumn ArtikelbezCell;
         private System.Windows.Forms.DataGridViewTextBoxColumn AnzahlCell;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WarenbereichCell;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameCell;
     }
 }
 

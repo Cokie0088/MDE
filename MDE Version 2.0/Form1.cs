@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace MDE_Version_2._0
     public partial class Form1 : Form
     {
         DataTable DT = new DataTable();
+        BindingSource BS = new BindingSource();
 
         public Form1()
         {
@@ -26,7 +28,9 @@ namespace MDE_Version_2._0
             {
             var erfassung = new Erfassung();
             DT = erfassung.LoadEntry();
-            dataGridView1.DataSource = DT;
+                BS.DataSource = DT;
+                DT.RowChanged += DT_RowChanged;
+            dataGridView1.DataSource = BS;
             }
             catch (Exception exception)
             {
@@ -36,6 +40,21 @@ namespace MDE_Version_2._0
             }
             
 
+        }
+
+        private void DT_RowChanged(object sender, DataRowChangeEventArgs e)
+        {
+            Debug.WriteLine(e.Row.RowState);
+            try
+            {
+                var sqliteCore = new SqliteCore();
+                sqliteCore.EditEntry(DT);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void Erfassungbutton_Click(object sender, EventArgs e)
@@ -99,14 +118,13 @@ namespace MDE_Version_2._0
 
         private void Anzahl_NewEntryEvent(DataTable obj)
         {
-            dataGridView1.DataSource = obj;
+            DT = obj;
+            BS.ResetBindings(false);
+            
+           
         }
 
-        //private void Anzahl_EingabemodelEvent(EingabeModel obj)
-        //{
-
-        //}
-
+        
         private void EinstellungenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmEinstellungen einstellungsform = new frmEinstellungen();
@@ -129,18 +147,6 @@ namespace MDE_Version_2._0
             sqlitecore.SqLiteConnection();
         }
 
-        private void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                var sqliteCore = new SqliteCore();
-                sqliteCore.EditEntry(DT);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+     
     }
 }
