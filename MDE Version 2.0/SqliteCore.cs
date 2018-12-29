@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data.SQLite;
-using System.Drawing.Printing;
+
 
 namespace MDE_Version_2._0
 {
@@ -68,28 +64,33 @@ namespace MDE_Version_2._0
             return dataTable;
         }
 
-        public DataTable LoadViewEntry()
+        public List<SqliteErfassungsModel> LoadViewEntry()
         {
             var queryString = "Select Artikel_ID, Artikelbez, Fabrikat, Anzahl, EAN, Warenbereich From Erfassung";
             var dataTable = new DataTable();
             var con = SqLiteConnection();
             var sqLiteCommand = new SQLiteCommand(queryString, con);
+            SqliteErfassungsModel sqliteErfassungsModels = new SqliteErfassungsModel();
             try
             {
-            var adapter = new SQLiteDataAdapter(queryString, con);
-                using (adapter)
+                using (sqLiteCommand)
                 {
-                    adapter.Fill(dataTable);
+                    sqLiteCommand.Connection.Open();
+                    SQLiteDataReader dataReader = sqLiteCommand.ExecuteReader();
+                    while(dataReader.Read())
+                    {
+                        var test = dataReader.GetInt32(0);
+                    }
 
+                    sqLiteCommand.Connection.Close();
                 }
-
             }
             catch (Exception)
             {
                 throw;
             }
-          
-            return dataTable;
+
+            return new List<SqliteErfassungsModel>();
         }
     
 

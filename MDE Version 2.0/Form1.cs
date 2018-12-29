@@ -9,12 +9,11 @@ namespace MDE_Version_2._0
 {
     public partial class Form1 : Form
     {
-        DataTable DT = new DataTable();
-        BindingSource BS = new BindingSource();
-
+       
         public Form1()
         {
             InitializeComponent();
+           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,12 +26,9 @@ namespace MDE_Version_2._0
             try
             {
             var erfassung = new Erfassung();
-            DT = erfassung.LoadEntry();
-                BS.DataSource = DT;
-                DT.RowChanged += DT_RowChanged;
-            dataGridView1.DataSource = BS;
+              dataGridView1.DataSource = erfassung.LoadEntry();
             }
-            catch (Exception exception)
+            catch (Exception)
             {
 
                 MessageBox.Show("Es wurde keine SQL-Lite Databank gefunden. Bitte unter Datei/Einstellungen -> SQL-Lite Karteireiter eine Datenbank auswählen oder erstellen.", "Keine Datenbank gefunden", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -40,21 +36,6 @@ namespace MDE_Version_2._0
             }
             
 
-        }
-
-        private void DT_RowChanged(object sender, DataRowChangeEventArgs e)
-        {
-            Debug.WriteLine(e.Row.RowState);
-            try
-            {
-                var sqliteCore = new SqliteCore();
-                sqliteCore.EditEntry(DT);
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void Erfassungbutton_Click(object sender, EventArgs e)
@@ -118,10 +99,7 @@ namespace MDE_Version_2._0
 
         private void Anzahl_NewEntryEvent(DataTable obj)
         {
-            DT = obj;
-            BS.ResetBindings(false);
-            
-           
+                      
         }
 
         

@@ -2,6 +2,7 @@
 using System.Text;
 using System.Data;
 using System.Data.SQLite;
+using System.Collections.Generic;
 
 //using System.Data.SqlClient;
 
@@ -35,7 +36,7 @@ namespace MDE_Version_2._0
 
         }
 
-        public DataTable LoadEntry()
+        public List<SqliteErfassungsModel> LoadEntry()
         {
             try
             {
