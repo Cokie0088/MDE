@@ -220,7 +220,8 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1030, 293);
             this.dataGridView1.TabIndex = 3;
-          
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView1_UserDeletedRow);
             // 
             // Artikel_ID
             // 
@@ -238,7 +239,7 @@
             // 
             // ArtikelbezCell
             // 
-            this.ArtikelbezCell.DataPropertyName = "Artikelbez";
+            this.ArtikelbezCell.DataPropertyName = "Artikelbezeichnung";
             this.ArtikelbezCell.HeaderText = "Artikelbezeichnung";
             this.ArtikelbezCell.Name = "ArtikelbezCell";
             this.ArtikelbezCell.ReadOnly = true;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -11,7 +12,7 @@ namespace MDE_Version_2._0
 
         public EingabeModel Eingabemodel { get; set; }
         private readonly Datenerfassungmodel _datenerfassungsmodel;
-        public event Action<DataTable> NewEntryEvent;
+        public event Action<List<SqliteErfassungsModel>> NewEntryEvent;
 
         public Anzahl(Datenerfassungmodel datenerfassungmodel)
         {

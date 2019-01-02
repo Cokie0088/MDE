@@ -13,19 +13,19 @@ namespace MDE_Version_2._0
     {
 
 
-        public DataTable Erfassen(Datenerfassungmodel datenerfassungmodel)
+        public List<SqliteErfassungsModel> Erfassen(Datenerfassungmodel datenerfassungmodel)
         {
             var sqliteCore = new SqliteCore();
             return sqliteCore.NewEntry(datenerfassungmodel);
 
         }
 
-        public void EditEntry(DataTable dataTable)
+        public void EditEntry(SqliteErfassungsModel sqliteErfassungsModel)
         {
             try
             {
             var sqliteCore = new  SqliteCore();
-            sqliteCore.EditEntry(dataTable);
+            sqliteCore.EditEntry(sqliteErfassungsModel);
             }
             catch (Exception)
             {
@@ -51,7 +51,21 @@ namespace MDE_Version_2._0
            
         }
 
-        
+        internal void DeleteEntry(SqliteErfassungsModel sqliteErfassungsModel)
+        {
+            try
+            {
+                var sqliteCore = new SqliteCore();
+                sqliteCore.DeleteEntry(sqliteErfassungsModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
 
     }
 }
