@@ -162,7 +162,7 @@ namespace MDE_Version_2._0
             }
             finally
             {
-                command.Connection.Close();
+                
             }
         }
 
@@ -183,13 +183,13 @@ namespace MDE_Version_2._0
                     command.ExecuteNonQuery();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 throw;
             }
             finally
             {
-                command.Connection.Close();
+                
             }
         }
     }

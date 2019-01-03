@@ -146,7 +146,12 @@ namespace MDE_Version_2._0
 
         private void dataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            var sqlitecore = new SqliteCore();
+           
+        }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+ var sqlitecore = new SqliteCore();
             sqlitecore.DeleteEntry((SqliteErfassungsModel)_bs.Current);
         }
     }

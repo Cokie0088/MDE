@@ -13,6 +13,8 @@ namespace MDE_Version_2._0
     public partial class Artikelauswahl : Form
     {
         public List<RenditeModel> RenditeModel { get; set; }
+        public event Action<RenditeModel> ProductSelektionEvent;
+        BindingSource _bs;
 
         public Artikelauswahl()
         {
@@ -21,7 +23,11 @@ namespace MDE_Version_2._0
 
         private void Artikelauswahl_Load(object sender, EventArgs e)
         {
-            ArtikellistedataGridView.DataSource = RenditeModel;
+            _bs = new BindingSource
+            {
+                DataSource = RenditeModel
+            };
+            ArtikellistedataGridView.DataSource = _bs;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,9 +45,14 @@ namespace MDE_Version_2._0
         {
             if (ArtikellistedataGridView.CurrentRow != null)
             {
-                var s = ArtikellistedataGridView.CurrentRow.Cells["EAN"].Value.ToString();
-                MessageBox.Show(s);
+                
+                Artikelauswahl_ProductSelektion((RenditeModel)_bs.Current));
             }
+        }
+
+        private void Artikelauswahl_ProductSelektion(RenditeModel obj)
+        {
+            ProductSelektionEvent?.Invoke(obj);
         }
     }
 }

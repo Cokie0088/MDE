@@ -30,6 +30,7 @@ namespace MDE_Version_2._0
             {
                 var artikelauswahl = new Artikelauswahl {RenditeModel = renditeModel.ToList()};
                 artikelauswahl.Show();
+                artikelauswahl.ProductSelektionEvent += Artikelauswahl_ProductSelektionEvent;
                 
                 return;
             }
@@ -50,6 +51,11 @@ namespace MDE_Version_2._0
             }
 
             }
+
+        private void Artikelauswahl_ProductSelektionEvent(RenditeModel obj)
+        {
+            OnDatenerfassungEvent(datenerfassungmodel);
+        }
 
         protected virtual void OnDatenerfassungEvent(Datenerfassungmodel obj)
         {
