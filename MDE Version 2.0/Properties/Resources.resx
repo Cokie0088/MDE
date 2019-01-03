@@ -137,4 +137,16 @@
                                     FABRIKAT ON ARTSTAMM.FABRIKAT = FABRIKAT.FABRIKAT
                                     WHERE (eannummern.ean = @AbfrageString)</value>
   </data>
+  <data name="Bitte_eine_gültig_Zahl_eingeben" xml:space="preserve">
+    <value>Bitte eine gültig Zahl eingeben!</value>
+  </data>
+  <data name="Fehlerhafte_eingabe" xml:space="preserve">
+    <value>Fehlerhafte eingabe</value>
+  </data>
+  <data name="Anzahl_groesser_1000" xml:space="preserve">
+    <value>Sind Sie sicher das Sie mehr als 1000 stück erfassen wollen?</value>
+  </data>
+  <data name="Anzahl_bitte_Prüfen" xml:space="preserve">
+    <value>Anzahl bitte Prüfen!</value>
+  </data>
 </root>

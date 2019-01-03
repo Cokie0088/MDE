@@ -1,6 +1,6 @@
 ﻿namespace MDE_Version_2._0
 {
-   public class Datenerfassungmodel : EingabeModel
+   public class DataCollectionmodel : EingabeModel
     {
 
         public string Fabrikat { get; set; }

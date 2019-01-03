@@ -43,16 +43,19 @@ namespace MDE_Version_2._0
 
         private void Auswahl()
         {
-            if (ArtikellistedataGridView.CurrentRow != null)
-            {
-                
-                Artikelauswahl_ProductSelektion((RenditeModel)_bs.Current));
-            }
+            if (ArtikellistedataGridView.CurrentRow == null) return;
+            Artikelauswahl_ProductSelektion((RenditeModel) _bs.Current);
+            this.Close();
         }
 
         private void Artikelauswahl_ProductSelektion(RenditeModel obj)
         {
             ProductSelektionEvent?.Invoke(obj);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

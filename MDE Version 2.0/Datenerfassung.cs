@@ -7,7 +7,7 @@ namespace MDE_Version_2._0
 {
     public class Datenerfassung
     {
-        public event Action<Datenerfassungmodel> DatenerfassungEvent;
+        public event Action<DataCollectionmodel> DatenerfassungEvent;
 
         public void Erfassung(EingabeModel eingabemodel)
         {
@@ -22,7 +22,7 @@ namespace MDE_Version_2._0
             {
 
                 
-                OnDatenerfassungEvent(new Datenerfassungmodel());
+                OnDatenerfassungEvent(new DataCollectionmodel());
                 return;
 
             }
@@ -36,7 +36,7 @@ namespace MDE_Version_2._0
             }
             else
             {
-                var datenerfassungmodel = new Datenerfassungmodel
+                var datenerfassungmodel = new DataCollectionmodel
                 {
                     
                     Fabrikat = renditeModel[0].Fabrikat,
@@ -54,10 +54,20 @@ namespace MDE_Version_2._0
 
         private void Artikelauswahl_ProductSelektionEvent(RenditeModel obj)
         {
+            var datenerfassungmodel = new DataCollectionmodel
+            {
+
+                Fabrikat = obj.Fabrikat,
+                Artikelbezeichnung = obj.Artikelbezeichnung,
+                EAN = obj.EAN,
+                Warenbereich = obj.Geschaeftsbereich,
+                WarenbereichId = Convert.ToInt32(obj.GeschaeftsbereichID)
+            };
+
             OnDatenerfassungEvent(datenerfassungmodel);
         }
 
-        protected virtual void OnDatenerfassungEvent(Datenerfassungmodel obj)
+        protected virtual void OnDatenerfassungEvent(DataCollectionmodel obj)
         {
             DatenerfassungEvent?.Invoke(obj);
             

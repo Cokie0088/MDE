@@ -87,9 +87,9 @@
       <DependentUpon>Artikelauswahl.cs</DependentUpon>
     </Compile>
     <Compile Include="Datenerfassung.cs" />
-    <Compile Include="Datenerfassungmodel.cs" />
+    <Compile Include="Datacollectionmodel.cs" />
     <Compile Include="EingabeModel.cs" />
-    <Compile Include="SqliteErfassungsModel.cs" />
+    <Compile Include="SqliteCollectionModel.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="Erfassung.cs" />
     <Compile Include="Form1.cs">

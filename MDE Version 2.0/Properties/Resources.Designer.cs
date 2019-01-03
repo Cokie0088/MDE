@@ -61,6 +61,42 @@ namespace MDE_Version_2._0.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Anzahl bitte Prüfen! ähnelt.
+        /// </summary>
+        internal static string Anzahl_bitte_Prüfen {
+            get {
+                return ResourceManager.GetString("Anzahl_bitte_Prüfen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sind Sie sicher das Sie mehr als 1000 stück erfassen wollen? ähnelt.
+        /// </summary>
+        internal static string Anzahl_groesser_1000 {
+            get {
+                return ResourceManager.GetString("Anzahl_groesser_1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bitte eine gültig Zahl eingeben! ähnelt.
+        /// </summary>
+        internal static string Bitte_eine_gültig_Zahl_eingeben {
+            get {
+                return ResourceManager.GetString("Bitte_eine_gültig_Zahl_eingeben", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehlerhafte eingabe ähnelt.
+        /// </summary>
+        internal static string Fehlerhafte_eingabe {
+            get {
+                return ResourceManager.GetString("Fehlerhafte_eingabe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die SELECT eannummern.ean, eannummern.artnr, ARTSTAMM.ARTBEZ, GBEREICHE.GBEREICH, GBEREICHE.BEZ, FABRIKAT.FABRIKAT
         ///                                    FROM ARTSTAMM INNER JOIN gruppen ON ARTSTAMM.GRUPPE = gruppen.GRUPPE INNER JOIN
         ///                                    UNTERGRUPPEN ON gruppen.UNTERGRUPPE = UNTERGRUPPEN.UNTERGRUPPE INNER JOIN

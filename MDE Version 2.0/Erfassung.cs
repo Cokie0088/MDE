@@ -13,19 +13,19 @@ namespace MDE_Version_2._0
     {
 
 
-        public List<SqliteErfassungsModel> Erfassen(Datenerfassungmodel datenerfassungmodel)
+        public List<SqliteCollectionModel> NewEntry(DataCollectionmodel dataCollectionmodel)
         {
             var sqliteCore = new SqliteCore();
-            return sqliteCore.NewEntry(datenerfassungmodel);
+            return sqliteCore.NewEntry(dataCollectionmodel);
 
         }
 
-        public void EditEntry(SqliteErfassungsModel sqliteErfassungsModel)
+        public void EditEntry(SqliteCollectionModel sqliteCollectionModel)
         {
             try
             {
             var sqliteCore = new  SqliteCore();
-            sqliteCore.EditEntry(sqliteErfassungsModel);
+            sqliteCore.EditEntry(sqliteCollectionModel);
             }
             catch (Exception)
             {
@@ -36,7 +36,7 @@ namespace MDE_Version_2._0
 
         }
 
-        public List<SqliteErfassungsModel> LoadEntry()
+        public List<SqliteCollectionModel> LoadEntry()
         {
             try
             {
@@ -51,12 +51,12 @@ namespace MDE_Version_2._0
            
         }
 
-        internal void DeleteEntry(SqliteErfassungsModel sqliteErfassungsModel)
+        internal void DeleteEntry(SqliteCollectionModel sqliteCollectionModel)
         {
             try
             {
                 var sqliteCore = new SqliteCore();
-                sqliteCore.DeleteEntry(sqliteErfassungsModel);
+                sqliteCore.DeleteEntry(sqliteCollectionModel);
             }
             catch (Exception)
             {
