@@ -8,7 +8,11 @@ namespace MDE_Version_2._0
     public class Datenerfassung
     {
         public event Action<DataCollectionmodel> DatenerfassungEvent;
-
+        /// <summary>
+        /// Fragt die Daten vom WWS ab und Konvertiert sie ins Datacolletion Model.
+        /// Lösst das Event "DatenerfassungsEvent" aus.
+        /// </summary>
+        /// <param name="eingabemodel">Das eingabe Model was die WWS Abfrage Parameter enthält.</param>
         public void Erfassung(EingabeModel eingabemodel)
         {
             var renditeabfrage = new RenditeAbfrage();
@@ -22,7 +26,7 @@ namespace MDE_Version_2._0
             {
 
                 
-                OnDatenerfassungEvent(new DataCollectionmodel());
+                OnDatenerfassungEvent(null);
                 return;
 
             }
@@ -51,7 +55,10 @@ namespace MDE_Version_2._0
             }
 
             }
-
+        /// <summary>
+        /// Wird von Erfassung ausgelösst.
+        /// </summary>
+        /// <param name="obj">Die WWS Daten.</param>
         private void Artikelauswahl_ProductSelektionEvent(RenditeModel obj)
         {
             var datenerfassungmodel = new DataCollectionmodel
@@ -67,6 +74,10 @@ namespace MDE_Version_2._0
             OnDatenerfassungEvent(datenerfassungmodel);
         }
 
+        /// <summary>
+        /// Das Event wird von Erfassung ausgelöst
+        /// </summary>
+        /// <param name="obj">Enthält die </param>
         protected virtual void OnDatenerfassungEvent(DataCollectionmodel obj)
         {
             DatenerfassungEvent?.Invoke(obj);

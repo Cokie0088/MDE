@@ -76,7 +76,7 @@ namespace MDE_Version_2._0
 
         private void Datenerfassung_DatenerfassungEvent(DataCollectionmodel obj)
         {
-            if (obj.HasEntry)
+            if (obj != null)
             {
                 obj.ZeahlerName = ErfasserTextBox.Text;
 
