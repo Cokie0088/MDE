@@ -77,7 +77,7 @@ namespace MDE_Version_2._0
         /// <summary>
         /// Das Event wird von Erfassung ausgelöst
         /// </summary>
-        /// <param name="obj">Enthält die </param>
+        /// <param name="obj">Enthält die Erfassten Daten bzw. gibt NULL zurück wenn keine Datenvorhanden sind.</param>
         protected virtual void OnDatenerfassungEvent(DataCollectionmodel obj)
         {
             DatenerfassungEvent?.Invoke(obj);

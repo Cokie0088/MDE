@@ -86,6 +86,12 @@
     <Compile Include="Artikelauswahl.Designer.cs">
       <DependentUpon>Artikelauswahl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSV-CreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CSV-CreateForm.Designer.cs">
+      <DependentUpon>CSV-CreateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Datenerfassung.cs" />
     <Compile Include="Datacollectionmodel.cs" />
     <Compile Include="EingabeModel.cs" />
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Artikelauswahl.resx">
       <DependentUpon>Artikelauswahl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CSV-CreateForm.resx">
+      <DependentUpon>CSV-CreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

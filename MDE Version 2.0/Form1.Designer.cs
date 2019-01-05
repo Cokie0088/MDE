@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.DatumtoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -54,6 +54,7 @@
             this.WarenbereichCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cSVDateienErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -112,7 +113,8 @@
             // dateiToolStripMenuItem
             // 
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.einstellungenToolStripMenuItem});
+            this.einstellungenToolStripMenuItem,
+            this.cSVDateienErstellenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
             this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.dateiToolStripMenuItem.Text = "Datei";
@@ -120,7 +122,7 @@
             // einstellungenToolStripMenuItem
             // 
             this.einstellungenToolStripMenuItem.Name = "einstellungenToolStripMenuItem";
-            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.einstellungenToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.einstellungenToolStripMenuItem.Text = "Einstellungen";
             this.einstellungenToolStripMenuItem.Click += new System.EventHandler(this.EinstellungenToolStripMenuItem_Click);
             // 
@@ -203,8 +205,8 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -273,6 +275,13 @@
             // 
             this.datenerfassungBindingSource.DataSource = typeof(MDE_Version_2._0.Datenerfassung);
             // 
+            // cSVDateienErstellenToolStripMenuItem
+            // 
+            this.cSVDateienErstellenToolStripMenuItem.Name = "cSVDateienErstellenToolStripMenuItem";
+            this.cSVDateienErstellenToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.cSVDateienErstellenToolStripMenuItem.Text = "CSV-Dateien Erstellen";
+            this.cSVDateienErstellenToolStripMenuItem.Click += new System.EventHandler(this.cSVDateienErstellenToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AcceptButton = this.Erfassungbutton;
@@ -327,6 +336,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AnzahlCell;
         private System.Windows.Forms.DataGridViewTextBoxColumn WarenbereichCell;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameCell;
+        private System.Windows.Forms.ToolStripMenuItem cSVDateienErstellenToolStripMenuItem;
     }
 }
 
