@@ -23,9 +23,13 @@ namespace MDE_Version_2._0
             {
                 Multiselect = true,
                 Filter = "Datenbank Dateien (*.db)| *.db"
+                
             };
-            var result = openfiledialog.OpenFile();
-            
+            openfiledialog.ShowDialog();
+            var result = openfiledialog.FileNames;
+            var csvCreate = new CSV_Create();
+            csvCreate.Create(result);
+
         }
 
         }

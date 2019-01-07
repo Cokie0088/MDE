@@ -12,7 +12,10 @@ namespace MDE_Version_2._0
         private string createTable =
             "CREATE TABLE Erfassung(Artikel_ID INTEGER PRIMARY KEY AUTOINCREMENT, Fabrikat TEXT, Artikelbez TEXT, EAN TEXT, Anzahl INTEGER, Warenbereich TEXT, WarenbereichID INTEGER, Name TEXT NOT NULL, Erfassungszeit TEXT NOT NULL)";
 
-
+        /// <summary>
+        /// Stellt Die SqLiteConnection zur verfügung.
+        /// </summary>
+        /// <returns></returns>
         public SQLiteConnection SqLiteConnection()
         {
             var setting = new Setting();
@@ -23,20 +26,25 @@ namespace MDE_Version_2._0
             return con;
         }
 
-        private SQLiteConnection SqLiteConnection(string DatabasePath)
+        /// <summary>
+        /// Stellt Die SqLiteConnection zur verfügung.
+        /// </summary>
+        /// <param name="databasePath">Der Dateipfad zur Datenbank datei.</param>
+        /// <returns></returns>
+        private SQLiteConnection SqLiteConnection(string databasePath)
         {
-            var con = new SQLiteConnection("Data Source = " + DatabasePath);
+            var con = new SQLiteConnection("Data Source = " + databasePath);
 
             return con;
         }
 
         /* Erstellt die Table in der Datenbank und bereite alles vor */
-        public void CreateDatabase(string DatabasePath)
+        public void CreateDatabase(string databasePath)
         {
             try
             {
-                SQLiteConnection.CreateFile(DatabasePath);
-                var con = SqLiteConnection(DatabasePath);
+                SQLiteConnection.CreateFile(databasePath);
+                var con = SqLiteConnection(databasePath);
 
                 con.Open();
                 var command = new SQLiteCommand(createTable, con);
@@ -48,6 +56,23 @@ namespace MDE_Version_2._0
                 throw;
             }
         }
+
+        public DataTable LoadTable(string databasePath)
+        {
+            var queryString = "Select * From Erfassung";
+            var dataTable = new DataTable();
+            var con = SqLiteConnection(databasePath);
+            var sqLiteCommand = new SQLiteCommand(queryString, con);
+
+            sqLiteCommand.Connection.Open();
+            //var test = sqLiteCommand.ExecuteReader();
+            var adapter = new SQLiteDataAdapter(queryString, con);
+            adapter.Fill(dataTable);
+            sqLiteCommand.Connection.Close();
+            return dataTable;
+
+        }
+
 
         public DataTable LoadTable()
         {

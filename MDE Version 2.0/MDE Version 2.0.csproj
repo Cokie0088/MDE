@@ -92,6 +92,7 @@
     <Compile Include="CSV-CreateForm.Designer.cs">
       <DependentUpon>CSV-CreateForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CSV_Create.cs" />
     <Compile Include="Datenerfassung.cs" />
     <Compile Include="Datacollectionmodel.cs" />
     <Compile Include="EingabeModel.cs" />
