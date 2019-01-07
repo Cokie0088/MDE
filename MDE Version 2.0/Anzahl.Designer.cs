@@ -73,6 +73,7 @@
             // 
             // Abbrechenbutton
             // 
+            this.Abbrechenbutton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.Abbrechenbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Abbrechenbutton.Location = new System.Drawing.Point(539, 175);
             this.Abbrechenbutton.Name = "Abbrechenbutton";
@@ -160,8 +161,10 @@
             // 
             // Anzahl
             // 
+            this.AcceptButton = this.Okbutton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.Abbrechenbutton;
             this.ClientSize = new System.Drawing.Size(670, 225);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Abbrechenbutton);
