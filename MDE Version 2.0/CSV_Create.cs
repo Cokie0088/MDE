@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace MDE_Version_2._0
                     {
                         Anzahl = Convert.ToInt32(resultItem["Anzahl"]),
                         WarenbereichID = Convert.ToInt32(resultItem["WarenbereichID"]),
+                        Warenbereich = (string)(resultItem["Warenbereich"]),
                         Ean = (string) resultItem["EAN"],
                         Artikelbezeichnung = (string)resultItem["Artikelbez"]
 
@@ -51,29 +53,39 @@ namespace MDE_Version_2._0
             foreach (int item in ID)
             {
             var result2 = from csvModel in csvModels where csvModel.WarenbereichID == item select csvModel;
-               
-                CreateFiles(result2.ToList<CsvModel>());
+
+                var FirstEntry = result2.First();
+                
+                CreateFiles(result2.ToList<CsvModel>(), FirstEntry.Warenbereich.ToString());
             }
             
         }
 
-        private void CreateFiles(List<CsvModel> csvmodel)
+        private void CreateFiles(List<CsvModel> csvmodel, string FileName)
         {
-            Debug.WriteLine("Neues File");
+            Directory.CreateDirectory(Environment.CurrentDirectory + "CSV" ).Create();
+            
+            
+            var streamwriter = new StreamWriter(Environment.CurrentDirectory + "/" + "CSV" + "/" + FileName.Trim('\\') + ".csv");
+            string stream = "";
+            Debug.WriteLine(FileName);
             foreach (var item in csvmodel)
             {
-                Debug.WriteLine("Artikel: " + item.Artikelbezeichnung);
+                stream = item.Ean + ";" + item.Anzahl + Environment.NewLine;
+                streamwriter.Write(stream);
             }
-
+           
+            streamwriter.Close();
         }
 
 
-        private class CsvModel
+        class CsvModel
         {
             public string Ean { get; set; }
             public int Anzahl { get; set; }
             public int WarenbereichID { get; set; }
             public string Artikelbezeichnung { get; set; }
+            public string Warenbereich { get; set; }
         }
 
     }
