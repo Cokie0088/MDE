@@ -91,7 +91,7 @@ namespace MDE_Version_2._0
 
         public List<SqliteCollectionModel> LoadViewEntry()
         {
-            var queryString = "Select Artikel_ID, Artikelbez, Fabrikat, Anzahl, EAN, Warenbereich, Name From Erfassung";
+            var queryString = "Select Artikel_ID, Artikelbez, Fabrikat, Anzahl, EAN, Warenbereich, Name From Erfassung ORDER BY Artikel_ID DESC";
             var dataTable = new DataTable();
             var con = SqLiteConnection();
             var sqLiteCommand = new SQLiteCommand(queryString, con);
@@ -108,13 +108,14 @@ namespace MDE_Version_2._0
                         var model = new SqliteCollectionModel
                         {
                             Artikel_ID = dataReader.GetInt32(0),
-                            Artikelbezeichnung = dataReader.GetString(1),
-                            Fabrikat = dataReader.GetString(2),
+                            Artikelbezeichnung = (dataReader[1] as string) ?? string.Empty,
+                            Fabrikat =  (dataReader[2] as string) ?? string.Empty,
                             Anzahl = dataReader.GetInt32(3),
                             EAN = dataReader.GetString(4),
-                            Warenbereich = dataReader.GetString(5),
+                            Warenbereich = (dataReader[5] as string) ?? string.Empty,
                             Name = dataReader.GetString(6)
                         };
+                        
                         listesqliteErfassungsModels.Add(model);
                     }
                 }

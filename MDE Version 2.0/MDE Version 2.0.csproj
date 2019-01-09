@@ -118,6 +118,7 @@
     <Compile Include="RenditeVerbindung.cs" />
     <Compile Include="SettingModel.cs" />
     <Compile Include="SqliteCore.cs" />
+    <Compile Include="Testdatengenerieren.cs" />
     <Compile Include="TestEntitity.cs" />
     <EmbeddedResource Include="Anzahl.resx">
       <DependentUpon>Anzahl.cs</DependentUpon>

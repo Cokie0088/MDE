@@ -12,12 +12,12 @@ namespace MDE_Version_2._0
         
 
         public EingabeModel Eingabemodel { get; set; }
-        private readonly DataCollectionmodel _datenerfassungsmodel;
-        public event Action<List<SqliteCollectionModel>> NewEntryEvent;
+        private readonly DataCollectionmodel _datencollectionmodel;
+        public event Action<DataCollectionmodel> NewEntryEvent;
 
         public Anzahl(DataCollectionmodel dataCollectionmodel)
         {
-            _datenerfassungsmodel = dataCollectionmodel;
+            _datencollectionmodel = dataCollectionmodel;
             InitializeComponent();
             Herstellerlabel.Text = dataCollectionmodel.Fabrikat;
             Artikelbezeichunglabel.Text = dataCollectionmodel.Artikelbezeichnung;
@@ -38,10 +38,9 @@ namespace MDE_Version_2._0
                         return;
                     }
                 }
-                _datenerfassungsmodel.Anzahl = anzahl;
-                var erfassung = new Erfassung();
-                var resultDataTable = erfassung.NewEntry(_datenerfassungsmodel);
-                NewEntryEvent?.Invoke(resultDataTable);
+                _datencollectionmodel.Anzahl = anzahl;
+                
+                NewEntryEvent?.Invoke(_datencollectionmodel);
                 this.Close();
             }
             else
