@@ -19,16 +19,7 @@ namespace MDE_Version_2._0
 
         private void SelectFilesbutton_Click(object sender, EventArgs e)
         {
-            var openfiledialog = new OpenFileDialog
-            {
-                Multiselect = true,
-                Filter = "Datenbank Dateien (*.db)| *.db"
-                
-            };
-            openfiledialog.ShowDialog();
-            var result = openfiledialog.FileNames;
-            var csvCreate = new CSV_Create();
-            csvCreate.Create(result);
+            
 
         }
 

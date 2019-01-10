@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.DatumtoolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -53,7 +54,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.abfragestringTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Artikel_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fabrikat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ArtikelbezCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +61,7 @@
             this.EAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WarenbereichCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameCell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datenerfassungBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -171,6 +172,7 @@
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Visible = false;
             // 
             // createDatabaseSQLiteToolStripMenuItem
             // 
@@ -209,10 +211,10 @@
             this.Warnunglabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Warnunglabel.Location = new System.Drawing.Point(6, 53);
             this.Warnunglabel.Name = "Warnunglabel";
-            this.Warnunglabel.Size = new System.Drawing.Size(973, 16);
+            this.Warnunglabel.Size = new System.Drawing.Size(980, 16);
             this.Warnunglabel.TabIndex = 8;
             this.Warnunglabel.Text = "KEINE DATENBANK ABFRAGE! ES WIRD NICHT ÜBERPRÜFT OB DIE ARTIKEL VORHANDEN SIND!  " +
-    "ES WIRD AUTIMATISCH 1 GEZÄHLT!";
+    "ES WIRD AUTOMATISCH 1 GEZÄHLT!";
             this.Warnunglabel.Visible = false;
             // 
             // Label2
@@ -263,8 +265,8 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -346,6 +348,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(1070, 446);
             this.Name = "MainForm";

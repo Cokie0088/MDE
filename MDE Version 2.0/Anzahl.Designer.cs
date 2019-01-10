@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Anzahl));
             this.AnzahltextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Okbutton = new System.Windows.Forms.Button();
@@ -171,6 +172,7 @@
             this.Controls.Add(this.Okbutton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AnzahltextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Anzahl";

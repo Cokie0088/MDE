@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using MDE_Version_2._0.Properties;
 
@@ -131,6 +132,7 @@ namespace MDE_Version_2._0
                 
                 _bs.DataSource = _erfassungsModels;
                 dataGridView1.DataSource = _bs;
+                AnzahltoolStripStatusLabel.Text = _bs.Count.ToString();
                 
             }
             catch (Exception)
@@ -206,8 +208,23 @@ namespace MDE_Version_2._0
 
         private void cSVDateienErstellenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var csv_Dateien = new CSV_CreateForm();
-            csv_Dateien.Show();
+            var openfiledialog = new OpenFileDialog
+            {
+                Multiselect = true,
+                Filter = "Datenbank Dateien (*.db)| *.db"
+
+            };
+            openfiledialog.ShowDialog();
+            var result = openfiledialog.FileNames;
+            var csvCreate = new CSV_Create();
+            csvCreate.Create(result);
+
+            string path = Environment.CurrentDirectory + "\\" + "CSV";
+
+            if (Directory.Exists(path))
+            { Process.Start("explorer.exe", path); }
+            
+
         }
 
         private void createTestDataToolStripMenuItem_Click(object sender, EventArgs e)
