@@ -14,7 +14,20 @@ namespace MDE_Version_2._0
 
         public List<RenditeModel> RenditeAbfragen(string abfrageString)
         {
+            var RenditeListe = RenditeResult(abfrageString);
+            //if (RenditeListe.Count <= 0)
+            //{
+            //    if (long.TryParse(abfrageString, out var ean))
+            //    {
+            //        return RenditeResult("0" + abfrageString);
+            //    }
+                
+            //}
+            return RenditeListe;
+        }
 
+        private List<RenditeModel> RenditeResult(string abfrageString)
+        {
             /*Sqlcommand erstellen*/
             var sqlcommand = new SqlCommand();
             var datenbankverbindung = new RenditeVerbindung();
@@ -25,7 +38,13 @@ namespace MDE_Version_2._0
             /*Prüft an der stelle ob es sich um eine EAN handelt.*/
             if (long.TryParse(abfrageString, out var ean))
             {
-                //var SQLparamenterEan = new SqlParameter("@AbfrageString", AbfrageString);
+                
+                /*Ist der Abfragestring kleiner als 13 Stellen und eine Zahl wird eine 0 Hinzugefügt. Da EAN immer 13 Zeichen hat!*/
+                if (abfrageString.Length < 13)
+                {
+                    abfrageString = "0" + abfrageString;   
+                }
+                
                 sqlcommand.Parameters.AddWithValue("@AbfrageString", abfrageString);
                 sqlcommand.CommandText = _renditeEanQuery;
 
@@ -41,24 +60,21 @@ namespace MDE_Version_2._0
 
             /*Datenbank Abfrage*/
             var sqldataadpater = new SqlDataAdapter(sqlcommand);
-            
-            //SQLAd.SelectCommand.Parameters.Add(SQLParaEAN);
-            
             var datatable = new DataTable();
 
             try
             {
                 sqldataadpater.Fill(datatable);
+
             }
             catch (Exception)
             {
                 throw;
             }
-            
+
 
 
             return RenditeMapping(datatable);
-
         }
 
         private List<RenditeModel> RenditeMapping(DataTable datatable)

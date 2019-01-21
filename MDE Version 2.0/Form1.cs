@@ -29,7 +29,7 @@ namespace MDE_Version_2._0
             abfragestringTextBox.Text = "7311271441489";
             ErfasserTextBox.Text = "Test";
 #endif
-
+            AutoOne();
             LoadData();
         }
 
@@ -217,7 +217,15 @@ namespace MDE_Version_2._0
             openfiledialog.ShowDialog();
             var result = openfiledialog.FileNames;
             var csvCreate = new CSV_Create();
-            csvCreate.Create(result);
+            DialogResult MessageBoxResult = MessageBox.Show("Soll für jeden Warenbereich eine CSV erstellt werden?\nBei NEIN werden alle Warenbereiche in 1 CSV-Datei geschrieben!\nEmphelung: Für eine Warenbereichsbezogene Inventur Ja auswählen!", "CSV-Erstellen", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (MessageBoxResult == DialogResult.Yes)
+            {
+                csvCreate.Create(result, false);
+            }
+            else if(MessageBoxResult == DialogResult.No) {
+                csvCreate.Create(result, true);
+            }
+            else { return; }
 
             string path = Environment.CurrentDirectory + "\\" + "CSV";
 
@@ -242,7 +250,7 @@ namespace MDE_Version_2._0
                 this.Warnunglabel.Visible = true;
                 automatischAnzahl1ToolStripMenuItem.Checked = true;
                 automatischAnzahl1ToolStripMenuItem.Enabled = false;
-                Warnunglabel.Text = "KEINE DATENBANK ABFRAGE!ES WIRD NICHT ÜBERPRÜFT OB DIE ARTIKEL VORHANDEN SIND! ES WIRD AUTIMATISCH 1 GEZÄHLT!";
+                Warnunglabel.Text = "KEINE DATENBANK ABFRAGE!ES WIRD NICHT ÜBERPRÜFT OB DIE ARTIKEL VORHANDEN SIND! ES WIRD AUTOMATISCH 1 GEZÄHLT!";
             }
             else
             {
@@ -255,6 +263,11 @@ namespace MDE_Version_2._0
         }
 
         private void automatischAnzahl1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AutoOne();
+        }
+
+        private void AutoOne()
         {
             if (automatischAnzahl1ToolStripMenuItem.Checked)
             {

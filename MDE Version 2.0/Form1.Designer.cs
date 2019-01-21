@@ -158,7 +158,9 @@
             // 
             // automatischAnzahl1ToolStripMenuItem
             // 
+            this.automatischAnzahl1ToolStripMenuItem.Checked = true;
             this.automatischAnzahl1ToolStripMenuItem.CheckOnClick = true;
+            this.automatischAnzahl1ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.automatischAnzahl1ToolStripMenuItem.Name = "automatischAnzahl1ToolStripMenuItem";
             this.automatischAnzahl1ToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.automatischAnzahl1ToolStripMenuItem.Text = "Automatisch Anzahl 1";
@@ -320,6 +322,7 @@
             // 
             // EAN
             // 
+            this.EAN.DataPropertyName = "EAN";
             this.EAN.HeaderText = "EAN";
             this.EAN.Name = "EAN";
             this.EAN.ReadOnly = true;

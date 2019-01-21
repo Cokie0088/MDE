@@ -13,7 +13,26 @@ namespace MDE_Version_2._0
     class CSV_Create
     {
 
-        public void Create(string[] FileName)
+        /// <summary>
+        /// Generiert die CSV-Files
+        /// </summary>
+        /// <param name="FileName">Der Dateiname für die Dateien als Array</param>
+        public void Create(string[] FileName, bool CreateOneFile)
+        {
+            List<CsvModel> csvModels = GenerateCsvListModel(FileName);
+
+            if (CreateOneFile)
+            {
+                
+                CreateFiles(csvModels, Path.GetFileName(FileName[0]));
+            }
+            else
+            {
+                GenerateFiles(csvModels);
+            }
+        }
+
+        private List<CsvModel> GenerateCsvListModel(string[] FileName)
         {
             var csvModels = new List<CsvModel>();
             var sqlitecore = new SqliteCore();
@@ -37,9 +56,15 @@ namespace MDE_Version_2._0
 
                 }
             }
-            GenerateFiles(csvModels);
+
+            return csvModels;
         }
 
+
+        /// <summary>
+        /// Generiert die Vorlage für die Dateien
+        /// </summary>
+        /// <param name="csvModels"></param>
         private void GenerateFiles(List<CsvModel> csvModels)
         {
 
